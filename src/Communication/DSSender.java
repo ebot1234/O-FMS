@@ -1,3 +1,6 @@
+package Communication;
+
+import OFMS.Team;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -5,7 +8,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.util.zip.CRC32;
-import 
+
 /**
  * This class sends packets of information to a driver station.
  *
@@ -94,7 +97,7 @@ public class DSSender {
      *
      * @param team The team object. This is used to find information about the
      * team.
-     * @param robotState The state of the robot(autonomous or tele-operated, plus
+     * @param robotState The state of the robot(autonomous or teleoperated, plus
      * whether it is enabled or disabled.
      * @param allianceColor The byte representing the color of the Driver
      * Stations alliance
@@ -179,4 +182,3 @@ public class DSSender {
         return new DatagramPacket(data, data.length, addr, 1121);
     }
 }
-

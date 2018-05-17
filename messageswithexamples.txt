@@ -1,0 +1,32 @@
+1;Technical Difficulties;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><RED><T>Technical Difficulties</T>
+2;Test, test, test;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><GRN><T>Test, test, test</T>
+3;Last match: 60;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><GRN><T>Last Match: </T><RED><T>62</T>
+4;Judges Award: 1234;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL M><CS 0><AMB><T>Judges Award: </T><GRN><T>1234</T>
+5;Sponsored by ADC;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><SL><S S><BL N><CS 0><GRN><T>Sponsored by AutomationDirect</T>
+6;test6;test6
+7; ;
+8; ;
+9; ;
+10; ;
+11; ;
+12; ;
+13; ;
+14; ;
+15; ;
+16; ;
+17; ;
+18; ;
+19; ;
+20; ;
+21; ;
+22; ;
+23; ;
+24; ;
+25; ;
+26; ;
+27; ;
+28; ;
+29; ;
+30; ;
+31; ;
+32; ;

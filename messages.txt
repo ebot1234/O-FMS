@@ -1,0 +1,32 @@
+1;Fun 2;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><GRN><T>Fun Stuff 3</T>
+2;Fun Stuff;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><GRN><T>Fun</T>
+3;Not Fun;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><GRN><T>Not Fun</T>
+4; ;
+5;This is message 5;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><RED><T>This is message 5</T>
+6;Blue Viewmarq;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><GRN><T>Blue Viewmarq</T>
+7; ;
+8;255 characters;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><RED><T>This </T><GRN><T>message</T><AMB><T> has</T><RED><T> </T><GRN><T>255</T><RED><T> c</T><GRN><T>h</T><AMB><T>a</T><RED><T>r</T><GRN><T>a</T><AMB><T>c</T><GRN><T>t</T><RED><T>ers</T><GRN><T>1234</T>
+9;254 characters;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><RED><T>This </T><GRN><T>message</T><AMB><T> has</T><RED><T> </T><GRN><T>254</T><RED><T> c</T><GRN><T>h</T><AMB><T>a</T><RED><T>r</T><GRN><T>a</T><AMB><T>c</T><GRN><T>t</T><RED><T>ers</T><GRN><T>123</T>
+10;256 characters;<ID 0><CLR><WIN 0 0 287 31><POS 0 0><LJ><BL N><CS 0><RED><T>This </T><GRN><T>message</T><AMB><T> has</T><RED><T> </T><GRN><T>255</T><RED><T> c</T><GRN><T>h</T><AMB><T>a</T><RED><T>r</T><GRN><T>a</T><AMB><T>c</T><GRN><T>t</T><RED><T>ers</T><GRN><T>12345</T>
+11; ;
+12; ;
+13; ;
+14; ;
+15; ;
+16; ;
+17; ;
+18; ;
+19; ;
+20; ;
+21; ;
+22; ;
+23; ;
+24; ;
+25; ;
+26; ;
+27; ;
+28; ;
+29; ;
+30; ;
+31; ;
+32; ;
