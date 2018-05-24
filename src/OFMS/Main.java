@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import splashscreen.FMS_SplashScreen;
 
+
 /**
  * This is the main class where everything runs from.
  *

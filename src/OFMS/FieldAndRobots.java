@@ -1,4 +1,5 @@
 package OFMS;
+import Scoring.Seesaw;
 
 /**
  * This class represents an FRC playing field and all the teams (robots) upon
@@ -27,6 +28,8 @@ public class FieldAndRobots {
      * represented by the first array, each with three teams.
      */
     public Team[][] teams;
+            
+     
     /**
      * Used to identify the red alliance in a default instance.
      */
@@ -51,6 +54,9 @@ public class FieldAndRobots {
      * The sole instance of this class.
      */
     private static FieldAndRobots _instance;
+    private int RedVaultScore;
+    private int BlueVaultScore;
+    private int score = 0;
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Creation And Instancing FAR">
@@ -283,6 +289,8 @@ public class FieldAndRobots {
         return allReady;
     }
 
+   
+
     /**
      * A simple enumeration for all of the "Special States" we want to set a
      * robot to.
@@ -291,7 +299,35 @@ public class FieldAndRobots {
 
         ESTOP_ROBOT, ZERO_BATTERY, BYPASS, UNBYPASS;
     }
+    
+    public enum CubeNumbers
+    {
+        Cube_1, Cube_2, Cube_3, PLAYED;
+    }
+    
+    public enum PowerUps
+    {
+        Force, Levitate, Boost, PLAYED;
+    }
+    public void Boost()
+    {
+         long Boost = System.currentTimeMillis() + 10000; // Current time + 10 seconds
 
+        while(true){
+            if(Boost <= System.currentTimeMillis()){
+                
+                int score = RedVaultScore*2;
+                Boost += 10000;
+            }
+                try{ 
+                Thread.sleep(5);
+            }catch(Exception ex){
+                
+                System.err.println( ex.getMessage() );
+            }
+        }
+     }
+    
     /**
      * Sets a specific robot to a specific "Special State".
      *
@@ -316,7 +352,46 @@ public class FieldAndRobots {
             System.out.println("ActOnRobot Verification Error!");
         }
     }
-
+    //Adds the scoring for the Cubes in the Red Vault
+    public void redVault(CubeNumbers numbers,PowerUps powerups )
+    {
+        //the score for each cubes in the vault
+        if ( numbers == CubeNumbers.Cube_1)
+        {
+            int score = RedVaultScore+9;
+        }
+        if(numbers == CubeNumbers.Cube_2)
+        {
+            int score = RedVaultScore+9;
+        }
+        if (numbers == CubeNumbers.Cube_3)
+        {
+            int score = RedVaultScore+9;
+        }
+        if (numbers == CubeNumbers.PLAYED)
+        {
+            int score = RedVaultScore+0;
+        }
+        if (powerups == PowerUps.Force)
+        {
+            //add the powerup of force
+        }
+        if (powerups == PowerUps.Levitate)
+        {
+            int score = RedVaultScore+30;
+        }
+        if (powerups == PowerUps.Boost)
+        {
+             Boost();
+        }
+    }
+    
+    
+    
+    public void BlueVault(CubeNumbers numbers)
+    {
+        //Add the cube numbers for the Blue Vault
+    }
     /**
      * Verify that the specific team is not null.
      *

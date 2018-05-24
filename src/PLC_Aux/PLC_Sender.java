@@ -58,6 +58,12 @@ public class PLC_Sender {
      * A byte representation of zero - also used as the 'clear' or 'blank' byte.
      */
     private static final byte BYTE_ZERO = "0".getBytes()[0], BYTE_CLEAR = BYTE_ZERO;
+    //Adds the byte allocation for the 1 force cube and so on
+    private static final byte RED_FORCE_1_CUBE = "RF1".getBytes()[0], RED_FORCE_2_CUBE = "RF2".getBytes()[0],RED_FORCE_3_CUBE = "RF3".getBytes()[0];
+    //Adds the bytes for the Red levitiate 
+    private static final byte RED_LEV_1_CUBE = "RLev1".getBytes()[0], RED_LEV_2_CUBE = "RLev2".getBytes()[0], RED_LEV_3_CUBE = "RLev3".getBytes()[0];
+   //Adds the bytes for the Red Boost
+    private static final byte RED_BOOST_1_CUBE = "RB1".getBytes()[0], RED_BOOST_2_CUBE = "RB2".getBytes()[0], RED_BOOST_3_CUBE = "RB3".getBytes()[0];
     /**
      * Holds a local copy, from Field And Robots, of the integer value for the
      * Red and Blue alliances. This is used later for accessing a specific
@@ -425,6 +431,27 @@ public class PLC_Sender {
         return new DatagramPacket(data, data.length, addr, 5000);
     }
 
+    private DatagramPacket buildVaultPacket()
+    {
+        byte[] data = new byte [40];
+        
+        for (int i = 0; i <40; i++)
+        {
+            data[i] = BYTE_ZERO;
+        }
+         FieldAndRobots FAR;
+        if (FieldAndRobots.getInstance() != null) {
+            FAR = FieldAndRobots.getInstance();
+        
+            data[0] = FAR.teams[BLUE].;
+            data[1] = FAR.teams[BLUE][TWO].isESTOPPED() ? LIGHT_ON : LIGHT_OFF;
+            data[2] = FAR.teams[BLUE][THREE].isESTOPPED() ? LIGHT_ON : LIGHT_OFF;
+        
+        
+        return new DatagramPacket(data, data.length, addr, 5000);
+        }
+    }
+    
     private DatagramPacket buildViewMarqPacket() {
         byte[] data = new byte[20];
 
