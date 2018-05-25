@@ -58,12 +58,20 @@ public class PLC_Sender {
      * A byte representation of zero - also used as the 'clear' or 'blank' byte.
      */
     private static final byte BYTE_ZERO = "0".getBytes()[0], BYTE_CLEAR = BYTE_ZERO;
+    
+    private static final byte ZERO_CUBES = "0cb".getBytes()[0];
     //Adds the byte allocation for the 1 force cube and so on
-    private static final byte RED_FORCE_1_CUBE = "RF1".getBytes()[0], RED_FORCE_2_CUBE = "RF2".getBytes()[0],RED_FORCE_3_CUBE = "RF3".getBytes()[0];
+    private static final byte RED_FORCE_1_CUBE = "RF1".getBytes()[0], RED_FORCE_2_CUBE = "RF2".getBytes()[0],RED_FORCE_3_CUBE = "RF3".getBytes()[0], RED_FORCE_BUTTON = "RF".getBytes()[0];
     //Adds the bytes for the Red levitiate 
-    private static final byte RED_LEV_1_CUBE = "RLev1".getBytes()[0], RED_LEV_2_CUBE = "RLev2".getBytes()[0], RED_LEV_3_CUBE = "RLev3".getBytes()[0];
+    private static final byte RED_LEV_1_CUBE = "RLev1".getBytes()[0], RED_LEV_2_CUBE = "RLev2".getBytes()[0], RED_LEV_3_CUBE = "RLev3".getBytes()[0], RED_LEV_BUTTON = "RLEV".getBytes()[0];
    //Adds the bytes for the Red Boost
-    private static final byte RED_BOOST_1_CUBE = "RB1".getBytes()[0], RED_BOOST_2_CUBE = "RB2".getBytes()[0], RED_BOOST_3_CUBE = "RB3".getBytes()[0];
+    private static final byte RED_BOOST_1_CUBE = "RB1".getBytes()[0], RED_BOOST_2_CUBE = "RB2".getBytes()[0], RED_BOOST_3_CUBE = "RB3".getBytes()[0], RED_BOOST_BUTTON = "RB".getBytes()[0];
+    private static final byte BLUE_FORCE_1_CUBE = "BF1".getBytes()[0], BLUE_FORCE_2_CUBE = "BF2".getBytes()[0],BLUE_FORCE_3_CUBE = "BF3".getBytes()[0], BED_FORCE_BUTTON = "BF".getBytes()[0];
+    //Adds the bytes for the Red levitiate 
+    private static final byte BLUE_LEV_1_CUBE = "BLev1".getBytes()[0], BLUE_LEV_2_CUBE = "BLev2".getBytes()[0], BLUE_LEV_3_CUBE = "BLev3".getBytes()[0], BED_LEV_BUTTON = "BLEV".getBytes()[0];
+   //Adds the bytes for the Red Boost
+    private static final byte BLUE_BOOST_1_CUBE = "BB1".getBytes()[0], BLUE_BOOST_2_CUBE = "BB2".getBytes()[0], BLUE_BOOST_3_CUBE = "BB3".getBytes()[0], BED_BOOST_BUTTON = "BB".getBytes()[0];
+  
     /**
      * Holds a local copy, from Field And Robots, of the integer value for the
      * Red and Blue alliances. This is used later for accessing a specific
@@ -431,27 +439,133 @@ public class PLC_Sender {
         return new DatagramPacket(data, data.length, addr, 5000);
     }
 
-    private DatagramPacket buildVaultPacket()
-    {
-        byte[] data = new byte [40];
-        
-        for (int i = 0; i <40; i++)
-        {
+   //Add connections for the Vaults
+   //Red Vault
+    private DatagramPacket buildRedVaultPacket() throws SocketException {
+        //System.out.println("Building packet for PLC...");
+
+        byte[] data = new byte[25];
+
+        for (int i = 0; i < 25; i++) {
             data[i] = BYTE_ZERO;
         }
-         FieldAndRobots FAR;
+
+        boolean matchRunning;
+        if (GovernThread.getInstance() != null) {
+            matchRunning = GovernThread.getInstance().isMatchRunning();
+        } else {
+            matchRunning = false;
+        }
+        FieldAndRobots FAR;
         if (FieldAndRobots.getInstance() != null) {
             FAR = FieldAndRobots.getInstance();
-        
-            data[0] = FAR.teams[BLUE].;
-            data[1] = FAR.teams[BLUE][TWO].isESTOPPED() ? LIGHT_ON : LIGHT_OFF;
-            data[2] = FAR.teams[BLUE][THREE].isESTOPPED() ? LIGHT_ON : LIGHT_OFF;
-        
-        
-        return new DatagramPacket(data, data.length, addr, 5000);
+
+            /*
+             * Zero cubes in the Red Vault
+             */
+            data[0] = "0cb".getBytes()[0] ;
+
+            /*
+             * Red Force 
+            */
+            data[1] = "RF1".getBytes()[0];
+            data[2] = "RF2".getBytes()[0];
+            data[3] = "RF3".getBytes()[0];
+            data[4] = "RF".getBytes()[0];
+            data[5] = BYTE_CLEAR;
+            
+            //Red boost
+            data[6] = "RB1".getBytes()[0];
+            data[7] = "RB2".getBytes()[0];
+            data[8] = "RB3".getBytes()[0];
+            data[9] = "RB".getBytes()[0];
+            data[10] = BYTE_CLEAR;
+            
+            //Red Levitate
+            data[11] = "RLev1".getBytes()[0];
+            data[12] = "RLEV2".getBytes()[0];
+            data[13] = "RLEV3".getBytes()[0];
+            data[14] = "RLEV".getBytes()[0];
+            data[15] = BYTE_CLEAR;
+        } else {
+            System.out.println("RED VAULT PACKET SEND ERROR #1");
         }
+        CRC32 check = new CRC32();
+        check.update(data);
+        byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
+
+        // CRC hash
+        data[21] = crc[0];
+        data[22] = crc[1];
+        data[23] = crc[2];
+        data[24] = crc[3];
+
+        return new DatagramPacket(data, data.length, addr, 5000);
     }
     
+    //Blue Vault
+     private DatagramPacket buildBlueVaultPacket() throws SocketException {
+        //System.out.println("Building packet for PLC...");
+
+        byte[] data = new byte[25];
+
+        for (int i = 0; i < 25; i++) {
+            data[i] = BYTE_ZERO;
+        }
+
+        boolean matchRunning;
+        if (GovernThread.getInstance() != null) {
+            matchRunning = GovernThread.getInstance().isMatchRunning();
+        } else {
+            matchRunning = false;
+        }
+        FieldAndRobots FAR;
+        if (FieldAndRobots.getInstance() != null) {
+            FAR = FieldAndRobots.getInstance();
+
+            /*
+             * Zero cubes in the Red Vault
+             */
+            data[0] = "0cb".getBytes()[0] ;
+
+            /*
+             * Blue Force 
+            */
+            data[1] = "BF1".getBytes()[0];
+            data[2] = "BF2".getBytes()[0];
+            data[3] = "BF3".getBytes()[0];
+            data[4] = "BF".getBytes()[0];
+            data[5] = BYTE_CLEAR;
+            
+            //Blue boost
+            data[6] = "BB1".getBytes()[0];
+            data[7] = "BB2".getBytes()[0];
+            data[8] = "BB3".getBytes()[0];
+            data[9] = "BB".getBytes()[0];
+            data[10] = BYTE_CLEAR;
+            
+            //Blue Levitate
+            data[11] = "BLev1".getBytes()[0];
+            data[12] = "BLEV2".getBytes()[0];
+            data[13] = "BLEV3".getBytes()[0];
+            data[14] = "BLEV".getBytes()[0];
+            data[15] = BYTE_CLEAR;
+        } else {
+            System.out.println("BLUE VAULT PACKET SEND ERROR #1");
+        }
+        CRC32 check = new CRC32();
+        check.update(data);
+        byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
+
+        // CRC hash
+        data[21] = crc[0];
+        data[22] = crc[1];
+        data[23] = crc[2];
+        data[24] = crc[3];
+
+        return new DatagramPacket(data, data.length, addr, 5000);
+    }
+     
     private DatagramPacket buildViewMarqPacket() {
         byte[] data = new byte[20];
 

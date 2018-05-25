@@ -22,6 +22,8 @@ import Scoring.Seesaw;
  */
 public class FieldAndRobots {
 
+    public static PowerUps powerups;
+
     //<editor-fold defaultstate="collapsed" desc="Variables">
     /**
      * Holds the alliances and their teams. Default size is two alliances,

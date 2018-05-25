@@ -7,9 +7,11 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import OFMS.FieldAndRobots;
 import static OFMS.FieldAndRobots.CubeNumbers.PLAYED;
+import OFMS.FieldAndRobots.PowerUps;
 import static OFMS.FieldAndRobots.PowerUps.Boost;
 import static OFMS.FieldAndRobots.PowerUps.Force;
 import static OFMS.FieldAndRobots.PowerUps.Levitate;
+import java.awt.event.ActionEvent;
 
 /**
  * This class represents a hardware system test designed to be able to test
@@ -93,21 +95,8 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         blue3_blue = new javax.swing.JButton();
         blue3_amber = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        table_green = new javax.swing.JButton();
-        table_red = new javax.swing.JButton();
-        table_blue = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        slowblinkall = new javax.swing.JButton();
-        mediumspeed = new javax.swing.JButton();
-        fastspeed = new javax.swing.JButton();
-        allon = new javax.swing.JButton();
-        alloff = new javax.swing.JButton();
         forceStandardUpdateButton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        table_amber = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         blue1_ES_Indic = new javax.swing.JLabel();
         blue2_ES_Indic = new javax.swing.JLabel();
@@ -119,19 +108,33 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        table_green = new javax.swing.JButton();
+        table_red = new javax.swing.JButton();
+        table_blue = new javax.swing.JButton();
+        table_amber = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        slowblinkall = new javax.swing.JButton();
+        mediumspeed = new javax.swing.JButton();
+        fastspeed = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        BlueVaultIndicator = new javax.swing.JLabel();
+        RedVaultBoost_ind = new javax.swing.JLabel();
         RedVaultIndicator = new javax.swing.JLabel();
-        RedBoostBtn = new javax.swing.JButton();
-        BlueBoostBtn = new javax.swing.JButton();
-        RedForceBtn = new javax.swing.JButton();
-        BlueForceBtn = new javax.swing.JButton();
-        RedLevitateBtn = new javax.swing.JButton();
-        BlueLevitateBtn = new javax.swing.JButton();
+        BlueVaultBoost_ind = new javax.swing.JLabel();
+        BlueVaultForce_Ind = new javax.swing.JLabel();
+        BlueVaultIndicator4 = new javax.swing.JLabel();
+        BlueVaultLevitate_Ind = new javax.swing.JLabel();
+        RedVaultForce_Ind = new javax.swing.JLabel();
+        RedVaultLevitate_Ind = new javax.swing.JLabel();
+        allon = new javax.swing.JButton();
+        alloff = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setAutoscrolls(true);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 0, 0));
 
@@ -236,6 +239,8 @@ public class AD_Test_Panel extends javax.swing.JPanel {
                 .addComponent(red3_amber)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 0, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 255));
 
@@ -345,150 +350,22 @@ public class AD_Test_Panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
-
-        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Table Light");
-
-        table_green.setBackground(new java.awt.Color(0, 204, 0));
-        table_green.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        table_green.setText("Green");
-        table_green.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                table_greenActionPerformed(evt);
-            }
-        });
-
-        table_red.setBackground(new java.awt.Color(255, 0, 0));
-        table_red.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        table_red.setForeground(new java.awt.Color(153, 153, 153));
-        table_red.setText("Red");
-        table_red.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                table_redActionPerformed(evt);
-            }
-        });
-
-        table_blue.setBackground(new java.awt.Color(0, 0, 255));
-        table_blue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        table_blue.setForeground(new java.awt.Color(153, 153, 153));
-        table_blue.setText("Blue");
-        table_blue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                table_blueActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(table_green, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                            .addComponent(table_red, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(table_blue, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGap(0, 99, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(table_green)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(table_red)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(table_blue)
-                .addGap(32, 32, 32))
+            .addGap(0, 118, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
-
-        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel8.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Blink All Lights");
-
-        slowblinkall.setText("Slow");
-        slowblinkall.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                slowblinkallActionPerformed(evt);
-            }
-        });
-
-        mediumspeed.setText("Medium");
-        mediumspeed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mediumspeedActionPerformed(evt);
-            }
-        });
-
-        fastspeed.setText("Fast");
-        fastspeed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fastspeedActionPerformed(evt);
-            }
-        });
-
-        allon.setText("All On");
-        allon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allonActionPerformed(evt);
-            }
-        });
-
-        alloff.setText("All Off");
-        alloff.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alloffActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(slowblinkall)
-                        .addGap(18, 18, 18)
-                        .addComponent(mediumspeed)
-                        .addGap(18, 18, 18)
-                        .addComponent(fastspeed)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(allon, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(alloff))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(allon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(alloff))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(slowblinkall)
-                            .addComponent(mediumspeed)
-                            .addComponent(fastspeed))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 363, -1, -1));
 
         forceStandardUpdateButton.setText("Force Standard Update");
         forceStandardUpdateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -496,41 +373,22 @@ public class AD_Test_Panel extends javax.swing.JPanel {
                 forceStandardUpdateButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(forceStandardUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
-
-        table_amber.setBackground(new java.awt.Color(255, 153, 51));
-        table_amber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        table_amber.setText("Amber");
-        table_amber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                table_amberActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Field ESTOP");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(table_amber)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 99, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(table_amber)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 69, Short.MAX_VALUE)
         );
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 589, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -634,10 +492,11 @@ public class AD_Test_Panel extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel18)
+                        .addComponent(jLabel19))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(field_ES_Indic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -650,23 +509,113 @@ public class AD_Test_Panel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Table Light");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 11, -1, -1));
+
+        table_green.setBackground(new java.awt.Color(0, 204, 0));
+        table_green.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        table_green.setText("Green");
+        table_green.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                table_greenActionPerformed(evt);
+            }
+        });
+        jPanel1.add(table_green, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 39, 78, -1));
+
+        table_red.setBackground(new java.awt.Color(255, 0, 0));
+        table_red.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        table_red.setForeground(new java.awt.Color(153, 153, 153));
+        table_red.setText("Red");
+        table_red.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                table_redActionPerformed(evt);
+            }
+        });
+        jPanel1.add(table_red, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 82, 79, -1));
+
+        table_blue.setBackground(new java.awt.Color(0, 0, 255));
+        table_blue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        table_blue.setForeground(new java.awt.Color(153, 153, 153));
+        table_blue.setText("Blue");
+        table_blue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                table_blueActionPerformed(evt);
+            }
+        });
+        jPanel1.add(table_blue, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 125, 79, -1));
+
+        table_amber.setBackground(new java.awt.Color(255, 153, 51));
+        table_amber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        table_amber.setText("Amber");
+        table_amber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                table_amberActionPerformed(evt);
+            }
+        });
+        jPanel1.add(table_amber, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 178, -1, -1));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Field ESTOP");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 156, 89, -1));
+
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Blink All Lights");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 108, -1));
+
+        slowblinkall.setText("Slow");
+        slowblinkall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                slowblinkallActionPerformed(evt);
+            }
+        });
+        jPanel1.add(slowblinkall, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
+
+        mediumspeed.setText("Medium");
+        mediumspeed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mediumspeedActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mediumspeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, -1, -1));
+
+        fastspeed.setText("Fast");
+        fastspeed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fastspeedActionPerformed(evt);
+            }
+        });
+        jPanel1.add(fastspeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, -1));
+
         jPanel8.setBackground(new java.awt.Color(204, 0, 204));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Blue Vault:");
-        jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+        jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Red Vault:");
-        jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 0, -1, -1));
+        jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
 
-        BlueVaultIndicator.setBackground(new java.awt.Color(204, 204, 204));
-        BlueVaultIndicator.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BlueVaultIndicator.setText("Vault");
-        BlueVaultIndicator.setMaximumSize(new java.awt.Dimension(20, 20));
-        BlueVaultIndicator.setMinimumSize(new java.awt.Dimension(20, 20));
-        BlueVaultIndicator.setOpaque(true);
-        BlueVaultIndicator.setPreferredSize(new java.awt.Dimension(20, 20));
-        jPanel8.add(BlueVaultIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 42, -1));
+        RedVaultBoost_ind.setBackground(new java.awt.Color(204, 204, 204));
+        RedVaultBoost_ind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        RedVaultBoost_ind.setText("Boost");
+        RedVaultBoost_ind.setMaximumSize(new java.awt.Dimension(20, 20));
+        RedVaultBoost_ind.setMinimumSize(new java.awt.Dimension(20, 20));
+        RedVaultBoost_ind.setOpaque(true);
+        RedVaultBoost_ind.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPanel8.add(RedVaultBoost_ind, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 42, -1));
 
         RedVaultIndicator.setBackground(new java.awt.Color(204, 204, 204));
         RedVaultIndicator.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -675,98 +624,79 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         RedVaultIndicator.setMinimumSize(new java.awt.Dimension(20, 20));
         RedVaultIndicator.setOpaque(true);
         RedVaultIndicator.setPreferredSize(new java.awt.Dimension(20, 20));
-        jPanel8.add(RedVaultIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 20, 42, -1));
+        jPanel8.add(RedVaultIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 42, -1));
 
-        RedBoostBtn.setText("Boost");
-        RedBoostBtn.addActionListener(new java.awt.event.ActionListener() {
+        BlueVaultBoost_ind.setBackground(new java.awt.Color(204, 204, 204));
+        BlueVaultBoost_ind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BlueVaultBoost_ind.setText("Boost");
+        BlueVaultBoost_ind.setMaximumSize(new java.awt.Dimension(20, 20));
+        BlueVaultBoost_ind.setMinimumSize(new java.awt.Dimension(20, 20));
+        BlueVaultBoost_ind.setOpaque(true);
+        BlueVaultBoost_ind.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPanel8.add(BlueVaultBoost_ind, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 42, -1));
+
+        BlueVaultForce_Ind.setBackground(new java.awt.Color(204, 204, 204));
+        BlueVaultForce_Ind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BlueVaultForce_Ind.setText("Force");
+        BlueVaultForce_Ind.setMaximumSize(new java.awt.Dimension(20, 20));
+        BlueVaultForce_Ind.setMinimumSize(new java.awt.Dimension(20, 20));
+        BlueVaultForce_Ind.setOpaque(true);
+        BlueVaultForce_Ind.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPanel8.add(BlueVaultForce_Ind, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 42, -1));
+
+        BlueVaultIndicator4.setBackground(new java.awt.Color(204, 204, 204));
+        BlueVaultIndicator4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BlueVaultIndicator4.setText("Vault");
+        BlueVaultIndicator4.setMaximumSize(new java.awt.Dimension(20, 20));
+        BlueVaultIndicator4.setMinimumSize(new java.awt.Dimension(20, 20));
+        BlueVaultIndicator4.setOpaque(true);
+        BlueVaultIndicator4.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPanel8.add(BlueVaultIndicator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 42, -1));
+
+        BlueVaultLevitate_Ind.setBackground(new java.awt.Color(204, 204, 204));
+        BlueVaultLevitate_Ind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BlueVaultLevitate_Ind.setText("Levitate");
+        BlueVaultLevitate_Ind.setMaximumSize(new java.awt.Dimension(20, 20));
+        BlueVaultLevitate_Ind.setMinimumSize(new java.awt.Dimension(20, 20));
+        BlueVaultLevitate_Ind.setOpaque(true);
+        BlueVaultLevitate_Ind.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPanel8.add(BlueVaultLevitate_Ind, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 60, -1));
+
+        RedVaultForce_Ind.setBackground(new java.awt.Color(204, 204, 204));
+        RedVaultForce_Ind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        RedVaultForce_Ind.setText("Force");
+        RedVaultForce_Ind.setMaximumSize(new java.awt.Dimension(20, 20));
+        RedVaultForce_Ind.setMinimumSize(new java.awt.Dimension(20, 20));
+        RedVaultForce_Ind.setOpaque(true);
+        RedVaultForce_Ind.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPanel8.add(RedVaultForce_Ind, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 42, -1));
+
+        RedVaultLevitate_Ind.setBackground(new java.awt.Color(204, 204, 204));
+        RedVaultLevitate_Ind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        RedVaultLevitate_Ind.setText("Levitate");
+        RedVaultLevitate_Ind.setMaximumSize(new java.awt.Dimension(20, 20));
+        RedVaultLevitate_Ind.setMinimumSize(new java.awt.Dimension(20, 20));
+        RedVaultLevitate_Ind.setOpaque(true);
+        RedVaultLevitate_Ind.setPreferredSize(new java.awt.Dimension(20, 20));
+        jPanel8.add(RedVaultLevitate_Ind, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 60, -1));
+
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 200, 169));
+
+        allon.setText("All On");
+        allon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RedBoostBtnActionPerformed(evt);
+                allonActionPerformed(evt);
             }
         });
-        jPanel8.add(RedBoostBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 51, -1, -1));
+        jPanel1.add(allon, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, -1, -1));
 
-        BlueBoostBtn.setText("Boost");
-        BlueBoostBtn.addActionListener(new java.awt.event.ActionListener() {
+        alloff.setText("All Off");
+        alloff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BlueBoostBtnActionPerformed(evt);
+                alloffActionPerformed(evt);
             }
         });
-        jPanel8.add(BlueBoostBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 51, -1, -1));
-
-        RedForceBtn.setText("Force");
-        jPanel8.add(RedForceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 85, -1, -1));
-
-        BlueForceBtn.setText("Force");
-        jPanel8.add(BlueForceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, -1, -1));
-
-        RedLevitateBtn.setText("Levitate");
-        jPanel8.add(RedLevitateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 126, -1, -1));
-
-        BlueLevitateBtn.setText("Levitate");
-        jPanel8.add(BlueLevitateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 126, -1, -1));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(79, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(forceStandardUpdateButton)
-                                .addGap(111, 111, 111))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(136, 136, 136))))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(87, 87, 87))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(forceStandardUpdateButton)
-                        .addGap(29, 29, 29)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
+        jPanel1.add(alloff, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -775,7 +705,7 @@ public class AD_Test_Panel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -786,549 +716,7 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    //<editor-fold defaultstate="collapsed" desc="Red Side">
-    private void red1_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red1_redActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "1".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_red1_redActionPerformed
-
-    private void red1_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red1_amberActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "1".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_red1_amberActionPerformed
-
-    private void red2_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red2_redActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "1".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_red2_redActionPerformed
-
-    private void red2_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red2_amberActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "1".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_red2_amberActionPerformed
-
-    private void red3_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red3_redActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "1".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_red3_redActionPerformed
-
-    private void red3_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red3_amberActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "1".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_red3_amberActionPerformed
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="Blue Side">
-    private void blue1_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue1_blueActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "1".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_blue1_blueActionPerformed
-
-    private void blue1_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue1_amberActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "1".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_blue1_amberActionPerformed
-
-    private void blue2_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue2_blueActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "1".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_blue2_blueActionPerformed
-
-    private void blue2_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue2_amberActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "1".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_blue2_amberActionPerformed
-
-    private void blue3_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue3_blueActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "1".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_blue3_blueActionPerformed
-
-    private void blue3_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue3_amberActionPerformed
+    private void table_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_table_amberActionPerformed
         // TODO add your handling code here:
         try {
             String PLC_IP = "10.0.0.7";
@@ -1359,10 +747,108 @@ public class AD_Test_Panel extends javax.swing.JPanel {
             //Blue Amber
             data[13] = "0".getBytes()[0];
             data[14] = "0".getBytes()[0];
-            data[15] = "1".getBytes()[0];
+            data[15] = "0".getBytes()[0];
             data[16] = BYTE_CLEAR;
             //Stack
             data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "1".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_table_amberActionPerformed
+
+    private void table_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_table_blueActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "1".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_table_blueActionPerformed
+
+    private void table_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_table_redActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "1".getBytes()[0];
             data[18] = "0".getBytes()[0];
             data[19] = "0".getBytes()[0];
             data[20] = "0".getBytes()[0];
@@ -1375,8 +861,7 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         } catch (Exception e) {
             System.err.println(e);
         }
-    }//GEN-LAST:event_blue3_amberActionPerformed
-    //</editor-fold>
+    }//GEN-LAST:event_table_redActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="Table Lights">
     private void table_greenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_table_greenActionPerformed
@@ -1428,203 +913,24 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_table_greenActionPerformed
 
-    private void table_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_table_redActionPerformed
+   //</editor-fold>
+
+    /**
+     * Called to reset the field back to a standard state - ie not a debugging
+     * state.
+     *
+     * @param evt
+     */
+    private void forceStandardUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forceStandardUpdateButtonActionPerformed
         // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
+        PLC_Sender.getInstance().updatePLC_Lights(true);
+        PLC_Sender.getInstance().updatePLC_TeamNum(true);
+        PLC_Sender.getInstance().updatePLC_Time(true);
+    }//GEN-LAST:event_forceStandardUpdateButtonActionPerformed
 
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "1".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_table_redActionPerformed
-
-    private void table_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_table_blueActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "1".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_table_blueActionPerformed
-
-    private void table_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_table_amberActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "1".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_table_amberActionPerformed
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="All Light Control">
-    private void alloffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alloffActionPerformed
-        // TODO add your handling code here:
-        try {
-            String PLC_IP = "10.0.0.7";
-            InetAddress address = InetAddress.getByName(PLC_IP);
-
-            byte[] data = new byte[21];
-
-            for (int i = 0; i < 21; i++) {
-                data[i] = "0".getBytes()[0];
-            }
-            data[0] = "L".getBytes()[0];
-
-            //Red Lights
-            data[1] = "0".getBytes()[0];
-            data[2] = "0".getBytes()[0];
-            data[3] = "0".getBytes()[0];
-            data[4] = BYTE_CLEAR;
-            //Red Amber
-            data[5] = "0".getBytes()[0];
-            data[6] = "0".getBytes()[0];
-            data[7] = "0".getBytes()[0];
-            data[8] = BYTE_CLEAR;
-            //Blue Lights
-            data[9] = "0".getBytes()[0];
-            data[10] = "0".getBytes()[0];
-            data[11] = "0".getBytes()[0];
-            data[12] = BYTE_CLEAR;
-            //Blue Amber
-            data[13] = "0".getBytes()[0];
-            data[14] = "0".getBytes()[0];
-            data[15] = "0".getBytes()[0];
-            data[16] = BYTE_CLEAR;
-            //Stack
-            data[17] = "0".getBytes()[0];
-            data[18] = "0".getBytes()[0];
-            data[19] = "0".getBytes()[0];
-            data[20] = "0".getBytes()[0];
-
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
-
-            DatagramSocket dsocket = new DatagramSocket();
-            dsocket.send(packet);
-            dsocket.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }//GEN-LAST:event_alloffActionPerformed
+//GEN-FIRST:event_alloffActionPerformed
+ 
+//GEN-LAST:event_alloffActionPerformed
 
     private void allonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allonActionPerformed
         // TODO add your handling code here:
@@ -1675,7 +981,56 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_allonActionPerformed
 
-    private void slowblinkallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slowblinkallActionPerformed
+    private void alloffActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        try{
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+            
+            byte[] data = new byte[21];
+            
+            for (int i = 0; i < 21; i++){
+            data[i] = "0".getBytes()[0];
+            }
+            //Red lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber lights
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber lights
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Table Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+            
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+        
+        
+    }
+    private void fastspeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fastspeedActionPerformed
         // TODO add your handling code here:
         try {
             String PLC_IP = "10.0.0.7";
@@ -1689,30 +1044,30 @@ public class AD_Test_Panel extends javax.swing.JPanel {
             data[0] = "L".getBytes()[0];
 
             //Red Lights
-            data[1] = "S".getBytes()[0];
-            data[2] = "S".getBytes()[0];
-            data[3] = "S".getBytes()[0];
+            data[1] = "F".getBytes()[0];
+            data[2] = "F".getBytes()[0];
+            data[3] = "F".getBytes()[0];
             data[4] = BYTE_CLEAR;
             //Red Amber
-            data[5] = "S".getBytes()[0];
-            data[6] = "S".getBytes()[0];
-            data[7] = "S".getBytes()[0];
+            data[5] = "F".getBytes()[0];
+            data[6] = "F".getBytes()[0];
+            data[7] = "F".getBytes()[0];
             data[8] = BYTE_CLEAR;
             //Blue Lights
-            data[9] = "S".getBytes()[0];
-            data[10] = "S".getBytes()[0];
-            data[11] = "S".getBytes()[0];
+            data[9] = "F".getBytes()[0];
+            data[10] = "F".getBytes()[0];
+            data[11] = "F".getBytes()[0];
             data[12] = BYTE_CLEAR;
             //Blue Amber
-            data[13] = "S".getBytes()[0];
-            data[14] = "S".getBytes()[0];
-            data[15] = "S".getBytes()[0];
+            data[13] = "F".getBytes()[0];
+            data[14] = "F".getBytes()[0];
+            data[15] = "F".getBytes()[0];
             data[16] = BYTE_CLEAR;
             //Stack
-            data[17] = "S".getBytes()[0];
-            data[18] = "S".getBytes()[0];
-            data[19] = "S".getBytes()[0];
-            data[20] = "S".getBytes()[0];
+            data[17] = "F".getBytes()[0];
+            data[18] = "F".getBytes()[0];
+            data[19] = "F".getBytes()[0];
+            data[20] = "F".getBytes()[0];
 
             DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
 
@@ -1722,7 +1077,7 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         } catch (Exception e) {
             System.err.println(e);
         }
-    }//GEN-LAST:event_slowblinkallActionPerformed
+    }//GEN-LAST:event_fastspeedActionPerformed
 
     private void mediumspeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumspeedActionPerformed
         // TODO add your handling code here:
@@ -1773,7 +1128,7 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_mediumspeedActionPerformed
 
-    private void fastspeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fastspeedActionPerformed
+    private void slowblinkallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slowblinkallActionPerformed
         // TODO add your handling code here:
         try {
             String PLC_IP = "10.0.0.7";
@@ -1787,30 +1142,30 @@ public class AD_Test_Panel extends javax.swing.JPanel {
             data[0] = "L".getBytes()[0];
 
             //Red Lights
-            data[1] = "F".getBytes()[0];
-            data[2] = "F".getBytes()[0];
-            data[3] = "F".getBytes()[0];
+            data[1] = "S".getBytes()[0];
+            data[2] = "S".getBytes()[0];
+            data[3] = "S".getBytes()[0];
             data[4] = BYTE_CLEAR;
             //Red Amber
-            data[5] = "F".getBytes()[0];
-            data[6] = "F".getBytes()[0];
-            data[7] = "F".getBytes()[0];
+            data[5] = "S".getBytes()[0];
+            data[6] = "S".getBytes()[0];
+            data[7] = "S".getBytes()[0];
             data[8] = BYTE_CLEAR;
             //Blue Lights
-            data[9] = "F".getBytes()[0];
-            data[10] = "F".getBytes()[0];
-            data[11] = "F".getBytes()[0];
+            data[9] = "S".getBytes()[0];
+            data[10] = "S".getBytes()[0];
+            data[11] = "S".getBytes()[0];
             data[12] = BYTE_CLEAR;
             //Blue Amber
-            data[13] = "F".getBytes()[0];
-            data[14] = "F".getBytes()[0];
-            data[15] = "F".getBytes()[0];
+            data[13] = "S".getBytes()[0];
+            data[14] = "S".getBytes()[0];
+            data[15] = "S".getBytes()[0];
             data[16] = BYTE_CLEAR;
             //Stack
-            data[17] = "F".getBytes()[0];
-            data[18] = "F".getBytes()[0];
-            data[19] = "F".getBytes()[0];
-            data[20] = "F".getBytes()[0];
+            data[17] = "S".getBytes()[0];
+            data[18] = "S".getBytes()[0];
+            data[19] = "S".getBytes()[0];
+            data[20] = "S".getBytes()[0];
 
             DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
 
@@ -1820,29 +1175,600 @@ public class AD_Test_Panel extends javax.swing.JPanel {
         } catch (Exception e) {
             System.err.println(e);
         }
-    }//GEN-LAST:event_fastspeedActionPerformed
+    }//GEN-LAST:event_slowblinkallActionPerformed
+
+    private void blue3_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue3_amberActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "1".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_blue3_amberActionPerformed
+
+    private void blue3_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue3_blueActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "1".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_blue3_blueActionPerformed
+
+    private void blue2_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue2_amberActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "1".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_blue2_amberActionPerformed
+
+    private void blue2_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue2_blueActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "1".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_blue2_blueActionPerformed
+//</editor-fold>
+    private void blue1_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue1_amberActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "1".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_blue1_amberActionPerformed
+
+    //<editor-fold defaultstate="collapsed" desc="Blue Side">
+    private void blue1_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blue1_blueActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "1".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_blue1_blueActionPerformed
+
+    private void red3_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red3_amberActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "1".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_red3_amberActionPerformed
+
+    private void red3_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red3_redActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "1".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_red3_redActionPerformed
+
+    private void red2_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red2_amberActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "1".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_red2_amberActionPerformed
+
+    private void red2_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red2_redActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "1".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_red2_redActionPerformed
+
+    private void red1_amberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red1_amberActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "0".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "1".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_red1_amberActionPerformed
+
+    //<editor-fold defaultstate="collapsed" desc="Red Side">
+    private void red1_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_red1_redActionPerformed
+        // TODO add your handling code here:
+        try {
+            String PLC_IP = "10.0.0.7";
+            InetAddress address = InetAddress.getByName(PLC_IP);
+
+            byte[] data = new byte[21];
+
+            for (int i = 0; i < 21; i++) {
+                data[i] = "0".getBytes()[0];
+            }
+            data[0] = "L".getBytes()[0];
+
+            //Red Lights
+            data[1] = "1".getBytes()[0];
+            data[2] = "0".getBytes()[0];
+            data[3] = "0".getBytes()[0];
+            data[4] = BYTE_CLEAR;
+            //Red Amber
+            data[5] = "0".getBytes()[0];
+            data[6] = "0".getBytes()[0];
+            data[7] = "0".getBytes()[0];
+            data[8] = BYTE_CLEAR;
+            //Blue Lights
+            data[9] = "0".getBytes()[0];
+            data[10] = "0".getBytes()[0];
+            data[11] = "0".getBytes()[0];
+            data[12] = BYTE_CLEAR;
+            //Blue Amber
+            data[13] = "0".getBytes()[0];
+            data[14] = "0".getBytes()[0];
+            data[15] = "0".getBytes()[0];
+            data[16] = BYTE_CLEAR;
+            //Stack
+            data[17] = "0".getBytes()[0];
+            data[18] = "0".getBytes()[0];
+            data[19] = "0".getBytes()[0];
+            data[20] = "0".getBytes()[0];
+
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, 5000);
+
+            DatagramSocket dsocket = new DatagramSocket();
+            dsocket.send(packet);
+            dsocket.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_red1_redActionPerformed
     //</editor-fold>
-
-    /**
-     * Called to reset the field back to a standard state - ie not a debugging
-     * state.
-     *
-     * @param evt
-     */
-    private void forceStandardUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forceStandardUpdateButtonActionPerformed
-        // TODO add your handling code here:
-        PLC_Sender.getInstance().updatePLC_Lights(true);
-        PLC_Sender.getInstance().updatePLC_TeamNum(true);
-        PLC_Sender.getInstance().updatePLC_Time(true);
-    }//GEN-LAST:event_forceStandardUpdateButtonActionPerformed
-
-    private void RedBoostBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedBoostBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RedBoostBtnActionPerformed
-
-    private void BlueBoostBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlueBoostBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BlueBoostBtnActionPerformed
+    //</editor-fold>
+    //</editor-fold>
 
     /**
      * Method to set all of the ESTOP indicators to the ESTOP state and color or
@@ -1904,15 +1830,25 @@ public class AD_Test_Panel extends javax.swing.JPanel {
     {
         if(Boost.equals(PLAYED))
         {
-            
+            if(FieldAndRobots.powerups == Boost)  
+            {
+                BlueVaultBoost_ind.setBackground(ColorPallate.ES_GRAY);
+            }
         }
         if(Force.equals(PLAYED))
         {
+            if(FieldAndRobots.powerups == Force)
+            {
+                BlueVaultForce_Ind.setBackground(ColorPallate.ES_GRAY);
+            }
         
         }
         if(Levitate.equals(PLAYED))
         {
-        
+            if(FieldAndRobots.powerups == Levitate)
+            {
+                BlueVaultLevitate_Ind.setBackground(ColorPallate.ES_GRAY);
+            } 
         }
     }
     /**
@@ -1973,14 +1909,14 @@ public class AD_Test_Panel extends javax.swing.JPanel {
     }
     //
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BlueBoostBtn;
-    private javax.swing.JButton BlueForceBtn;
-    private javax.swing.JButton BlueLevitateBtn;
-    private javax.swing.JLabel BlueVaultIndicator;
-    private javax.swing.JButton RedBoostBtn;
-    private javax.swing.JButton RedForceBtn;
-    private javax.swing.JButton RedLevitateBtn;
+    private javax.swing.JLabel BlueVaultBoost_ind;
+    private javax.swing.JLabel BlueVaultForce_Ind;
+    private javax.swing.JLabel BlueVaultIndicator4;
+    private javax.swing.JLabel BlueVaultLevitate_Ind;
+    private javax.swing.JLabel RedVaultBoost_ind;
+    private javax.swing.JLabel RedVaultForce_Ind;
     private javax.swing.JLabel RedVaultIndicator;
+    private javax.swing.JLabel RedVaultLevitate_Ind;
     private javax.swing.JButton alloff;
     private javax.swing.JButton allon;
     private javax.swing.JLabel blue1_ES_Indic;
@@ -2013,7 +1949,6 @@ public class AD_Test_Panel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;

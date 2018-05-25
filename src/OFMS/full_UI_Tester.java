@@ -29,7 +29,7 @@ public class full_UI_Tester extends javax.swing.JFrame {
         this.setTitle("(O!FMS) Open Field Managment System");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass()
                 .getClassLoader().getResource("OFMS/LogoFiles/ofms logo.png")));
-        this.setResizable(false);
+        this.setResizable(true);
         setUpIndicators();
     }
 
