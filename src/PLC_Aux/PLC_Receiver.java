@@ -5,6 +5,7 @@ import OFMS.GovernThread;
 import OFMS.Main;
 import UI.AD_Test_Panel;
 import UI.Msg;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -206,19 +207,40 @@ public class PLC_Receiver extends Thread {
                     }
                     // }
                 }
-//                /*
-//                 * Third Byte = System Status Code(blue then red)
-//                 */
-//                if (isBitSet(data[2], 0)) {
-//                    Main.getESTOP_Panel().setBlueIOStatus(Color.GREEN);
-//                } else {
-//                    Main.getESTOP_Panel().setBlueIOStatus(Color.RED);
-//                }
-//                if (isBitSet(data[2], 1)) {
-//                    Main.getESTOP_Panel().setRedIOStatus(Color.GREEN);
-//                } else {
-//                    Main.getESTOP_Panel().setRedIOStatus(Color.RED);
-//                }
+                //If the Red Force becomes active
+                if(dataStr.substring(0, 1).equals("RF1"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Force);
+                }
+                if (dataStr.substring(2,3).equals("RF2"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Force);
+                }
+                if(dataStr.substring(4,5).equals("RF3"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Force);
+                }
+                if(dataStr.substring(6,7).equals("RF"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Force);
+                }
+               /*
+               * Third Byte = System Status Code(blue then red)
+               */
+            if (isBitSet(data[2], 0)) {
+                 Main.getESTOP_Panel().setBlueIOStatus(Color.GREEN);
+               } else {
+                   Main.getESTOP_Panel().setBlueIOStatus(Color.RED);
+               }
+               if (isBitSet(data[2], 1)) {
+                   Main.getESTOP_Panel().setRedIOStatus(Color.GREEN);
+               } else {
+                    Main.getESTOP_Panel().setRedIOStatus(Color.RED);
+               }
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -5,29 +5,18 @@
  */
 package Scoring.Leds;
 
-/**
- *
- * @author ellen.estep.one
- */
-public class Color {
+import static java.awt.Color.red;
+
+
+ 
+ 
+public class LED_COLORS {
     
    
-   private static final byte Colors = "c".getBytes()[0];
+   
+  
 
-        int red;
-        int orange;
-	int yellow;
-	int green;
-	int teal;
-	int blue;
-	int purple;
-	int white;
-	int black;
-	int purpleRed;
-	int purpleBlue;
-	int dimRed;
-	int dimBlue;
-        
+      
        
 	
 	/*red:        {255, 0, 0},
@@ -44,9 +33,10 @@ public class Color {
 	dimRed:     {100, 0, 0},
 	dimBlue:    {0, 0, 100},
 */
-    public Color() {
-       this.red = new Color{};
+
+   }
+    
         
-    }
+   
 }
 

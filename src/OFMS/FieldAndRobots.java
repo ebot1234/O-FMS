@@ -309,7 +309,7 @@ public class FieldAndRobots {
     
     public enum PowerUps
     {
-        Force, Levitate, Boost, PLAYED;
+        Force, Levitate, Boost;
     }
     public void Boost()
     {
