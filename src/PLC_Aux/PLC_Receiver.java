@@ -134,8 +134,8 @@ public class PLC_Receiver extends Thread {
                     if (dataStr.substring(5, 6).equals("1")) {
                         AD_Test_Panel.getInstance().updateES_Indic(BLUE, THREE, true);
                     }
-                }
-
+                }//add the indicators for year specfic stuff
+               
                 /**
                  * If the entire field has been ESTOPPED and this is during the
                  * match the stop the match and ESTOP every robot.
@@ -228,6 +228,50 @@ public class PLC_Receiver extends Thread {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Force);
                 }
+                //For Red boost
+                if(dataStr.substring(0, 1).equals("RB1"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Boost);
+                }
+                if (dataStr.substring(2, 3).equals("RB2"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Boost);
+                }
+                if (dataStr.substring(4, 5).equals("RB3"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Boost);          
+                }
+                if(dataStr.substring(6, 7).equals("RB"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Boost);
+                }
+                //Red Levitiate
+                if(dataStr.substring(0, 1).equals("RLEV1"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Levitate);
+                }
+                if(dataStr.substring(2, 3 ).equals("RLEV2"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Levitate);
+                }
+                if(dataStr.substring(4, 5).equals("RLEV3"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Levitate);
+                }
+                if(dataStr.substring(6, 7).equals("RLEV"))
+                {
+                    FieldAndRobots.getInstance().redVault
+        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
+                }
+                
+                //Blue Force
                /*
                * Third Byte = System Status Code(blue then red)
                */
