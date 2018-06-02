@@ -655,7 +655,7 @@ public class PLC_Sender {
            data[21] = BYTE_CLEAR;
         
         }else {
-            System.out.println("RED VAULT PACKET SEND ERROR #1");
+            System.out.println("Scale and Switch PACKET SEND ERROR");
         }
         CRC32 check = new CRC32();
         check.update(data);
@@ -709,7 +709,7 @@ public class PLC_Sender {
             data[15] = message.substring(19, 20).getBytes()[0];
 
         } else {
-            System.out.println("PACKET SEND ERROR");
+            System.out.println("ViewMarq PACKET SEND ERROR");
         }
 
         return new DatagramPacket(data, data.length, addr, 5000);

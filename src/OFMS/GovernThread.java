@@ -47,18 +47,25 @@ public class GovernThread extends Thread {
      */
     public static final int NO_MATCH_UNDERWAY_MODE = 0;
     /**
-     * Represents a match in the autonomous period.
+     * Represents a match in the warmup period.
      */
-    public static final int AUTO_MODE = 1;
+    public static final int WARMUP_MODE = 1;
+    /**
+     * Represents a match in the Auto period.
+     */
+    public static final int AUTO_MODE = 2; //1
     /**
      * Represents a match in the teleoperated period.
      */
-    public static final int TELE_MODE = 2;
+    public static final int TELE_MODE = 3;//2
     /**
      * The state of the current match, if any. Value should be one of the three
      * mode constants (NO_MATCH_UNDERWAY_MODE, AUTO_MODE, TELE_MODE).
      */
     private int matchMode = NO_MATCH_UNDERWAY_MODE;
+    
+    //How long the warmup period lests in milliseconds
+    private double WarmUpTimeMillis = 2 * 1000;
     /**
      * How long the autonomous period lasts in milliseconds. Defaults to 10,000
      */
@@ -101,6 +108,7 @@ public class GovernThread extends Thread {
      * Color to use to indicate a match has ended.
      */
     private static final Color MATCH_ENDED = Color.RED;
+    private static final Color WARM_UP = Color.MAGENTA;
     /**
      * Indicates whether or not this is a new match - if this class has not yet
      * executed.
@@ -207,6 +215,31 @@ public class GovernThread extends Thread {
      */
     @Override
     public void run() {
+        //Warmup period
+        newMatch = false;
+        setModeAndStateForAllRobots(AUTO_MODE, false);
+        System.out.println("Warmup Start");
+        matchMode = WARMUP_MODE;
+        playSound("MATCH_WARMUP.wav");//Play WarmUp sound
+        UI_Layer.getInstance().changeProBarColor(WARM_UP);
+        
+      while (!kill)
+      {
+          int newMatchTimeMillis = pseudoTimeMillis;
+          if(!isWarmUp())
+          {
+              newMatchTimeMillis -= getWarmUpTimeMillis();
+          }
+          currMatchTimeMillis = (int) getModeTimeMillis() - newMatchTimeMillis;
+            PLC_timeSeconds = currMatchTimeMillis / 1000;
+
+            if (pseudoTimeMillis <= getTotalTimeMillis()) {
+                UI_Layer.getInstance().updateProBar(((double) pseudoTimeMillis / getTotalTimeMillis()));
+                UI_Layer.getInstance().setMatchTime(fixTime((currMatchTimeMillis / 1000) + ""));
+            } else {
+                stopMatch();
+            }
+      }
         newMatch = false;
         setModeAndStateForAllRobots(AUTO_MODE, true);
         System.out.println("Autonomous Start");
@@ -343,7 +376,11 @@ public class GovernThread extends Thread {
     public String getMatchState() {
         if (matchMode == NO_MATCH_UNDERWAY_MODE) {
             return "Disabled";
-        } else if (matchMode == AUTO_MODE) {
+        } 
+        else if(matchMode == WARMUP_MODE){
+            return "WarmUp";
+        }
+        else if (matchMode == AUTO_MODE) {
             return "Autonomous";
         } else if (matchMode == TELE_MODE) {
             return "Teleop";
@@ -360,7 +397,10 @@ public class GovernThread extends Thread {
     public boolean isAutonomous() {
         return matchMode == AUTO_MODE;
     }
-
+    // returns true if the match is in WarmUp mode and determines if the match is in warmup
+    public boolean isWarmUp(){
+        return matchMode == WARMUP_MODE;
+    }
     /**
      * Determines whether a match is currently in progress.
      *
@@ -381,6 +421,11 @@ public class GovernThread extends Thread {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Timing">
+    
+    public void setWarmUpTime(int newWarmUpTime)
+    {
+        WarmUpTimeMillis = (newWarmUpTime * 1000);
+    }
     /**
      * Sets the local time of the autonomous period, in seconds.
      *
@@ -406,7 +451,7 @@ public class GovernThread extends Thread {
      * seconds.
      */
     private int getTotalTimeMillis() {
-        return (int) (teleTimeMillis + autoTimeMillis);
+        return (int) (WarmUpTimeMillis + teleTimeMillis + autoTimeMillis);
     }
 
     /**
@@ -416,6 +461,9 @@ public class GovernThread extends Thread {
      * depending on the game state.
      */
     private int getModeTimeMillis() {
+        if(matchMode == WARMUP_MODE){
+            return (int)WarmUpTimeMillis;
+        }
         if (matchMode == AUTO_MODE) {
             return (int) autoTimeMillis;
         } else if (matchMode == TELE_MODE) {
@@ -432,6 +480,10 @@ public class GovernThread extends Thread {
      */
     private double getAutoTimeMillis() {
         return autoTimeMillis;
+    }
+    private double getWarmUpTimeMillis()
+    {
+        return WarmUpTimeMillis;
     }
 
     /**

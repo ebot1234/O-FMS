@@ -7,6 +7,7 @@ import UI.AD_Test_Panel;
 import UI.Msg;
 import java.awt.Color;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
@@ -56,7 +57,6 @@ public class PLC_Receiver extends Thread {
         try {
             sock = new DatagramSocket(7000);
         } catch (SocketException e) {
-            e.printStackTrace();
             System.out.println("Couldn't setup PLC Receiver socket");
         }
     }
@@ -94,7 +94,6 @@ public class PLC_Receiver extends Thread {
                 // Takes in the data from the packet and puts it into a string
                 dataStr = new String(data, "UTF-8");
             } catch (IOException e) {
-                e.printStackTrace();
             }
 
             try {
@@ -334,6 +333,8 @@ public class PLC_Receiver extends Thread {
                     FieldAndRobots.getInstance().blueVault
         (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
                 }
+                //add the stuff for the scale and switch scoring
+                //add lights for vaults
                     
                /*
                * Third Byte = System Status Code(blue then red)
@@ -348,8 +349,7 @@ public class PLC_Receiver extends Thread {
                } else {
                     Main.getESTOP_Panel().setRedIOStatus(Color.RED);
                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
             }
 
             // Reset packet length
