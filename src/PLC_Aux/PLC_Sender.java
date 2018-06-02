@@ -71,7 +71,10 @@ public class PLC_Sender {
     private static final byte BLUE_LEV_1_CUBE = "BLev1".getBytes()[0], BLUE_LEV_2_CUBE = "BLev2".getBytes()[0], BLUE_LEV_3_CUBE = "BLev3".getBytes()[0], BED_LEV_BUTTON = "BLEV".getBytes()[0];
    //Adds the bytes for the Red Boost
     private static final byte BLUE_BOOST_1_CUBE = "BB1".getBytes()[0], BLUE_BOOST_2_CUBE = "BB2".getBytes()[0], BLUE_BOOST_3_CUBE = "BB3".getBytes()[0], BED_BOOST_BUTTON = "BB".getBytes()[0];
-  
+    private static final byte RED_FORCE_RELAY1 = "RFR1".getBytes()[0], RED_FORCE_RELAY2 = "RFR2".getBytes()[0], RED_FORCE_RELAY3 = "RFR3".getBytes()[0];
+    private static final byte RED_BOOST_RELAY1 = "RBR1".getBytes()[0], RED_BOOST_RELAY2 = "RBR2".getBytes()[0], RED_BOOST_RELAY3 = "RBR3".getBytes()[0];
+    private static final byte RED_LEV_RELAY1 = "RLR1".getBytes()[0], RED_LEV_RELAY2 = "RLR2".getBytes()[0], RED_LEV_RELAY3 = "RLR3".getBytes()[0];
+            
     /**
      * Holds a local copy, from Field And Robots, of the integer value for the
      * Red and Blue alliances. This is used later for accessing a specific
@@ -472,21 +475,30 @@ public class PLC_Sender {
             data[2] = "RED_FORCE_2_CUBE".getBytes()[0];
             data[3] = "RED_FORCE_3_CUBE".getBytes()[0];
             data[4] = "RED_FORCE_BUTTON".getBytes()[0];
-            data[5] = BYTE_CLEAR;
+            data[5] = "RED_FORCE_RELAY1".getBytes()[0];
+            data[6] = "RED_FORCE_RELAY2".getBytes()[0];
+            data[7] = "RED_FORCE_RELAY3".getBytes()[0];
+            data[8] = BYTE_CLEAR;
             
             //Red boost
-            data[6] = "RED_BOOST_1_CUBE".getBytes()[0];
-            data[7] = "RED_BOOST_2_CUBE".getBytes()[0];
-            data[8] = "RED_BOOST_3_CUBE".getBytes()[0];
-            data[9] = "RED_BOOST_BUTTON".getBytes()[0];
-            data[10] = BYTE_CLEAR;
+            data[9] = "RED_BOOST_1_CUBE".getBytes()[0];
+            data[10] = "RED_BOOST_2_CUBE".getBytes()[0];
+            data[11] = "RED_BOOST_3_CUBE".getBytes()[0];
+            data[12] = "RED_BOOST_BUTTON".getBytes()[0];
+            data[13] = "RED_BOOST_RELAY1".getBytes()[0];
+            data[14] = "RED_BOOST_RELAY2".getBytes()[0];
+            data[15] = "RED_BOOST_RELAY3".getBytes()[0];
+            data[16] = BYTE_CLEAR;
             
             //Red Levitate
-            data[11] = "RED_LEV_1_CUBE".getBytes()[0];
-            data[12] = "RED_LEV_2_CUBE".getBytes()[0];
-            data[13] = "RED_LEV_3_CUBE".getBytes()[0];
-            data[14] = "RED_LEV_BUTTON".getBytes()[0];
-            data[15] = BYTE_CLEAR;
+            data[17] = "RED_LEV_1_CUBE".getBytes()[0];
+            data[18] = "RED_LEV_2_CUBE".getBytes()[0];
+            data[19] = "RED_LEV_3_CUBE".getBytes()[0];
+            data[20] = "RED_LEV_BUTTON".getBytes()[0];
+            data[21] = "RED_LEV_RELAY1".getBytes()[0];
+            data[22] = "RED_LEV_RELAY2".getBytes()[0];
+            data[23] = "RED_LEV_RELAY3".getBytes()[0];
+            data[24] = BYTE_CLEAR;
         } else {
             System.out.println("RED VAULT PACKET SEND ERROR #1");
         }
@@ -495,10 +507,10 @@ public class PLC_Sender {
         byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
 
         // CRC hash
-        data[16] = crc[0];
-        data[17] = crc[1];
-        data[18] = crc[2];
-        data[19] = crc[3];
+        data[25] = crc[0];
+        data[26] = crc[1];
+        data[27] = crc[2];
+        data[28] = crc[3];
 
         return new DatagramPacket(data, data.length, addr, 5000);
     }
