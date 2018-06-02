@@ -18,7 +18,7 @@ import java.util.zip.CRC32;
  * This class sends time information (via a datagram socket) to a PLC.
  *
  * Complete System developed by:
- *
+ *@author Ethen Brandenburg - Team 1080
  * @author Alex Bassett
  * @author Walton Robotics - Team 2974
  * @author Foundation code developed by Josh, Andrew Lobos, Team 225
@@ -77,7 +77,16 @@ public class PLC_Sender {
     private static final byte BLUE_FORCE_RELAY1 = "BFR1".getBytes()[0], BLUE_FORCE_RELAY2 = "BFR2".getBytes()[0], BLUE_FORCE_RELAY3 = "BFR3".getBytes()[0];
     private static final byte BLUE_BOOST_RELAY1 = "BBR1".getBytes()[0], BLUE_BOOST_RELAY2 = "BBR2".getBytes()[0], BLUE_BOOST_RELAY3 = "BBR3".getBytes()[0];
     private static final byte BLUE_LEV_RELAY1 = "BLR1".getBytes()[0], BLUE_LEV_RELAY2 = "BLR2".getBytes()[0], BLUE_LEV_RELAY3 = "BLR3".getBytes()[0];
-            
+    //Scale byte
+    private static final byte SCALE_SENSOR1 = "SS1".getBytes()[0], SCALE_SENSOR2 = "SS2".getBytes()[0];
+    //Red side Switch
+    private static final byte RED_SWITCH_SENSOR1 = "RSS1".getBytes()[0], RED_SWITCH_SENSOR2 = "RSS2".getBytes()[0];
+    //Blue side Switch
+    private static final byte BLUE_SWITCH_SENSOR2 = "BSS2".getBytes()[0], BLUE_SWITCH_SENSOR1 = "BSS1".getBytes()[0];
+    private static final byte NeitherAlliance = "NA".getBytes()[0];
+    private static final byte SCALE_RELAY1 = "SR1".getBytes()[0], SCALE_RELAY2 = "SR2".getBytes()[0], SCALE_RELAY3 = "SR3".getBytes()[0];
+    private static final byte RED_SWITCH_RELAY1 = "RSR1".getBytes()[0], RED_SWITCH_RELAY2 = "RSR2".getBytes()[0], RED_SWITCH_RELAY3 = "RSR3".getBytes()[0];
+    private static final byte BLUE_SWITCH_RELAY1 = "BSR1".getBytes()[0], BLUE_SWITCH_RELAY2 = "BSR2".getBytes()[0], BLUE_SWITCH_RELAY3 = "BSR3".getBytes()[0];
     /**
      * Holds a local copy, from Field And Robots, of the integer value for the
      * Red and Blue alliances. This is used later for accessing a specific
@@ -589,6 +598,78 @@ public class PLC_Sender {
 
         return new DatagramPacket(data, data.length, addr, 5000);
     }
+     //scale stuff
+     private DatagramPacket buildScalePacket() throws SocketException {
+        //System.out.println("Building packet for PLC...");
+
+        byte[] data = new byte[25];
+
+        for (int i = 0; i < 25; i++) {
+            data[i] = BYTE_ZERO;
+        }
+
+        boolean matchRunning;
+        if (GovernThread.getInstance() != null) {
+            matchRunning = GovernThread.getInstance().isMatchRunning();
+        } else {
+            matchRunning = false;
+        }
+        FieldAndRobots FAR;
+        if (FieldAndRobots.getInstance() != null) {
+            FAR = FieldAndRobots.getInstance();
+            
+            //Scale sensor
+            data[0] = NeitherAlliance;
+            
+            //Scale sensor
+            data[1] = SCALE_SENSOR1;
+            data[2] = SCALE_SENSOR2;
+            data[3] = BYTE_CLEAR;
+            
+            //Red Switch Sensor
+            data[4] = RED_SWITCH_SENSOR1;
+            data[5] = RED_SWITCH_SENSOR2;
+            data[6] = BYTE_CLEAR;
+            
+            //Blue Switch Sensor
+            data[7] = BLUE_SWITCH_SENSOR1;
+            data[8] = BLUE_SWITCH_SENSOR2;
+            data[9] = BYTE_CLEAR;
+            
+           //Scale relays for lights
+           data[10] = SCALE_RELAY1;
+           data[11] = SCALE_RELAY2;
+           data[12] = SCALE_RELAY3;
+           data[13] = BYTE_CLEAR;
+           
+           //Red Switch relays for lights
+           data[14] = RED_SWITCH_RELAY1;
+           data[15] = RED_SWITCH_RELAY2;
+           data[16] = RED_SWITCH_RELAY3;
+           data[17] = BYTE_CLEAR;
+           
+           //Blue Switch relays for lights
+           data[18] = BLUE_SWITCH_RELAY1;
+           data[19] = BLUE_SWITCH_RELAY2;
+           data[20] = BLUE_SWITCH_RELAY3;
+           data[21] = BYTE_CLEAR;
+        
+        }else {
+            System.out.println("RED VAULT PACKET SEND ERROR #1");
+        }
+        CRC32 check = new CRC32();
+        check.update(data);
+        byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
+
+        // CRC hash
+        data[22] = crc[0];
+        data[23] = crc[1];
+        data[24] = crc[2];
+        data[25] = crc[3];
+
+        return new DatagramPacket(data, data.length, addr, 5000);
+    }
+    
      
     private DatagramPacket buildViewMarqPacket() {
         byte[] data = new byte[20];
