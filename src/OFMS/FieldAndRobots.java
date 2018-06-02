@@ -384,16 +384,46 @@ public class FieldAndRobots {
         }
         if (powerups == PowerUps.Boost)
         {
-             Boost();
+             int score = RedVaultScore+120;
         }
     }
     
     
     
-    public void BlueVault(CubeNumbers numbers)
+    public void blueVault(CubeNumbers numbers, PowerUps powerups)
     {
         //Add the cube numbers for the Blue Vault
+         if ( numbers == CubeNumbers.Cube_1)
+        {
+            int score = BlueVaultScore+9;
+        }
+        if(numbers == CubeNumbers.Cube_2)
+        {
+            int score = BlueVaultScore+9;
+        }
+        if (numbers == CubeNumbers.Cube_3)
+        {
+            int score = BlueVaultScore+9;
+        }
+        if (numbers == CubeNumbers.PLAYED)
+        {
+            int score = BlueVaultScore+0;
+        }
+        if (powerups == PowerUps.Force)
+        {
+            //add the powerup of force
+            
+        }
+        if (powerups == PowerUps.Levitate)
+        {
+            int score = BlueVaultScore+30;
+        }
+        if (powerups == PowerUps.Boost)
+        {
+             int score = BlueVaultScore+120;
+        }
     }
+    
     /**
      * Verify that the specific team is not null.
      *

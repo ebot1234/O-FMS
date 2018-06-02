@@ -208,70 +208,133 @@ public class PLC_Receiver extends Thread {
                     // }
                 }
                 //If the Red Force becomes active
-                if(dataStr.substring(0, 1).equals("RF1"))
+                if(dataStr.substring(0).equals("RF1"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Force);
                 }
-                if (dataStr.substring(2,3).equals("RF2"))
+                if (dataStr.substring(1).equals("RF2"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Force);
                 }
-                if(dataStr.substring(4,5).equals("RF3"))
+                if(dataStr.substring(2).equals("RF3"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Force);
                 }
-                if(dataStr.substring(6,7).equals("RF"))
+                if(dataStr.substring(9).equals("RF"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Force);
                 }
                 //For Red boost
-                if(dataStr.substring(0, 1).equals("RB1"))
+                if(dataStr.substring(6).equals("RB1"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Boost);
                 }
-                if (dataStr.substring(2, 3).equals("RB2"))
+                if (dataStr.substring(7).equals("RB2"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Boost);
                 }
-                if (dataStr.substring(4, 5).equals("RB3"))
+                if (dataStr.substring(8).equals("RB3"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Boost);          
                 }
-                if(dataStr.substring(6, 7).equals("RB"))
+                if(dataStr.substring(10).equals("RB"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Boost);
                 }
                 //Red Levitiate
-                if(dataStr.substring(0, 1).equals("RLEV1"))
+                if(dataStr.substring(3).equals("RLEV1"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Levitate);
                 }
-                if(dataStr.substring(2, 3 ).equals("RLEV2"))
+                if(dataStr.substring(4).equals("RLEV2"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Levitate);
                 }
-                if(dataStr.substring(4, 5).equals("RLEV3"))
+                if(dataStr.substring(5).equals("RLEV3"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Levitate);
                 }
-                if(dataStr.substring(6, 7).equals("RLEV"))
+                if(dataStr.substring(11).equals("RLEV"))
                 {
                     FieldAndRobots.getInstance().redVault
         (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
                 }
                 
                 //Blue Force
+                if(dataStr.substring(0).equals("BF1"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Force);
+                }
+                if(dataStr.substring(1).equals("BF2"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Force);
+                }
+                if(dataStr.substring(2).equals("BF3"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Force);
+                }
+                if(dataStr.substring(3).equals("BF"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Force);
+                }
+                //Blue Boost
+                if(dataStr.substring(4).equals("BB1"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Boost);
+                }
+                if(dataStr.substring(5).equals("BB2"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Boost);
+                }
+                if(dataStr.substring(6).equals("BB3"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Boost);
+                }
+                if(dataStr.substring(7).equals("BB"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Boost);
+                }
+                //Blue Lev
+                if(dataStr.substring(8).equals("BLEV1"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Levitate);
+                }
+                if(dataStr.substring(9).equals("BLEV2"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Levitate);
+                }
+                if(dataStr.substring(10).equals("BLEV3"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Levitate);
+                }
+                if(dataStr.substring(11).equals("BLEV"))
+                {
+                    FieldAndRobots.getInstance().blueVault
+        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
+                }
+                    
                /*
                * Third Byte = System Status Code(blue then red)
                */

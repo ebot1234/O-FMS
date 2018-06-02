@@ -1795,6 +1795,34 @@ public class AD_Test_Panel extends javax.swing.JPanel {
             red3_ES_Indic.setBackground(ColorPallate.ES_GRAY);
             field_ES_Indic.setBackground(ColorPallate.ES_GRAY);
         }
+       }
+    public void updateRedVaultIndic(boolean PLAYED)
+    {
+        if(PLAYED)
+        {
+            RedVaultBoost_ind.setBackground(ColorPallate.READY);
+            RedVaultForce_Ind.setBackground(ColorPallate.READY);
+            RedVaultLevitate_Ind.setBackground(ColorPallate.READY);
+        } else
+        {
+            RedVaultBoost_ind.setBackground(ColorPallate.NOT_READY);
+            RedVaultForce_Ind.setBackground(ColorPallate.NOT_READY);
+            RedVaultLevitate_Ind.setBackground(ColorPallate.NOT_READY);
+        }
+    }
+    public void updateBlueVaultIndic(boolean PLAYED)
+    {
+        if(PLAYED)
+        {
+            BlueVaultBoost_ind.setBackground(ColorPallate.READY);
+            BlueVaultForce_Ind.setBackground(ColorPallate.READY);
+            BlueVaultLevitate_Ind.setBackground(ColorPallate.READY);
+        } else
+        {
+            BlueVaultBoost_ind.setBackground(ColorPallate.NOT_READY);
+            BlueVaultForce_Ind.setBackground(ColorPallate.NOT_READY);
+            BlueVaultLevitate_Ind.setBackground(ColorPallate.NOT_READY);
+        }
     }
 
     /**
