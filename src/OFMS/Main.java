@@ -3,6 +3,7 @@ package OFMS;
 import Communication.DSReceiver;
 import PLC_Aux.PLC_Receiver;
 import PLC_Aux.PLC_Sender;
+import Real_Time_Scoring.GameData;
 import UI.ESTOP_Panel;
 import UI.Msg;
 import UI.New_UI;
@@ -62,6 +63,8 @@ public class Main {
      * Variable holding whether simple UI or full UI is enabled.
      */
     private static boolean simpleMode = true;
+    //Adds the class of game Data
+    public static GameData gameData;
     /**
      * A local reference of the Main instance.
      */
@@ -286,6 +289,8 @@ public class Main {
 
             // Now in simple mode
             simpleMode = true;
+            
+            
         }
     }
 }

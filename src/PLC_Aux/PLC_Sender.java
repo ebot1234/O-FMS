@@ -85,7 +85,7 @@ public class PLC_Sender {
     private static final byte BLUE_SWITCH_SENSOR2 = "BSS2".getBytes()[0], BLUE_SWITCH_SENSOR1 = "BSS1".getBytes()[0];
     private static final byte NeitherAlliance = "NA".getBytes()[0];
     private static final byte SCALE_RELAY1 = "SR1".getBytes()[0], SCALE_RELAY2 = "SR2".getBytes()[0], SCALE_RELAY3 = "SR3".getBytes()[0];
-    private static final byte RED_SWITCH_RELAY1 = "RSR1".getBytes()[0], RED_SWITCH_RELAY2 = "RSR2".getBytes()[0], RED_SWITCH_RELAY3 = "RSR3".getBytes()[0];
+    private static final byte RED_SWITCH_RELAY1 = "RSR1".getBytes()[0], RED_SWITCH_RELAY2 = "RSR2".getBytes()[0], RED_SWITCH_RELAY3 = "RSR3".getBytes()[0], RED_SWITCH_RELAY_4 = "RSR4".getBytes()[0];
     private static final byte BLUE_SWITCH_RELAY1 = "BSR1".getBytes()[0], BLUE_SWITCH_RELAY2 = "BSR2".getBytes()[0], BLUE_SWITCH_RELAY3 = "BSR3".getBytes()[0];
     /**
      * Holds a local copy, from Field And Robots, of the integer value for the

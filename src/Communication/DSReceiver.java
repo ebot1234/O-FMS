@@ -75,6 +75,7 @@ public class DSReceiver extends Thread {
                 }
                 int team = Integer.parseInt(team1 + "".concat(team2 + ""));
 
+                
                 // Gets the robots battery voltage from the packet
                 double batteryVolts = Double.parseDouble(
                         convertInt((int) data[40])

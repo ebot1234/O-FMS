@@ -1,5 +1,5 @@
 package OFMS;
-import Scoring.Seesaw;
+import Real_Time_Scoring.Seesaw;
 
 /**
  * This class represents an FRC playing field and all the teams (robots) upon
@@ -56,9 +56,12 @@ public class FieldAndRobots {
      * The sole instance of this class.
      */
     private static FieldAndRobots _instance;
+    //Red Vault Score
     private int RedVaultScore;
+    //Blue Vault Score
     private int BlueVaultScore;
-    private int score = 0;
+    
+   
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Creation And Instancing FAR">
@@ -329,6 +332,75 @@ public class FieldAndRobots {
             }
         }
      }
+     public void redVault(FieldAndRobots.CubeNumbers numbers,FieldAndRobots.PowerUps powerups )
+    {
+        //the score for each cubes in the vault
+        if ( numbers == FieldAndRobots.CubeNumbers.Cube_1)
+        {
+            int score = RedVaultScore+9;
+        }
+        if(numbers == FieldAndRobots.CubeNumbers.Cube_2)
+        {
+            int score = RedVaultScore+9;
+        }
+        if (numbers == FieldAndRobots.CubeNumbers.Cube_3)
+        {
+            int score = RedVaultScore+9;
+        }
+        if (numbers == FieldAndRobots.CubeNumbers.PLAYED)
+        {
+            int score = RedVaultScore+0;
+        }
+        if (powerups == FieldAndRobots.PowerUps.Force)
+        {
+            //add the powerup of force
+        }
+        if (powerups == FieldAndRobots.PowerUps.Levitate)
+        {
+            int score = RedVaultScore+30;
+        }
+        if (powerups == FieldAndRobots.PowerUps.Boost)
+        {
+             Boost();
+        }
+    }
+    
+    
+    
+    public void blueVault(FieldAndRobots.CubeNumbers numbers, FieldAndRobots.PowerUps powerups)
+    {
+        //Add the cube numbers for the Blue Vault
+         if ( numbers == FieldAndRobots.CubeNumbers.Cube_1)
+        {
+            int score = BlueVaultScore+9;
+        }
+        if(numbers == FieldAndRobots.CubeNumbers.Cube_2)
+        {
+            int score = BlueVaultScore+9;
+        }
+        if (numbers == FieldAndRobots.CubeNumbers.Cube_3)
+        {
+            int score = BlueVaultScore+9;
+        }
+        if (numbers == FieldAndRobots.CubeNumbers.PLAYED)
+        {
+            int score = BlueVaultScore+0;
+        }
+        if (powerups == FieldAndRobots.PowerUps.Force)
+        {
+            //add the powerup of force
+            
+        }
+        if (powerups == FieldAndRobots.PowerUps.Levitate)
+        {
+            int score = BlueVaultScore+30;
+        }
+        if (powerups == FieldAndRobots.PowerUps.Boost)
+        {
+             int score = BlueVaultScore+120;
+        }
+    }
+
     
     /**
      * Sets a specific robot to a specific "Special State".
@@ -354,75 +426,7 @@ public class FieldAndRobots {
             System.out.println("ActOnRobot Verification Error!");
         }
     }
-    //Adds the scoring for the Cubes in the Red Vault
-    public void redVault(CubeNumbers numbers,PowerUps powerups )
-    {
-        //the score for each cubes in the vault
-        if ( numbers == CubeNumbers.Cube_1)
-        {
-            int score = RedVaultScore+9;
-        }
-        if(numbers == CubeNumbers.Cube_2)
-        {
-            int score = RedVaultScore+9;
-        }
-        if (numbers == CubeNumbers.Cube_3)
-        {
-            int score = RedVaultScore+9;
-        }
-        if (numbers == CubeNumbers.PLAYED)
-        {
-            int score = RedVaultScore+0;
-        }
-        if (powerups == PowerUps.Force)
-        {
-            //add the powerup of force
-        }
-        if (powerups == PowerUps.Levitate)
-        {
-            int score = RedVaultScore+30;
-        }
-        if (powerups == PowerUps.Boost)
-        {
-             int score = RedVaultScore+120;
-        }
-    }
-    
-    
-    
-    public void blueVault(CubeNumbers numbers, PowerUps powerups)
-    {
-        //Add the cube numbers for the Blue Vault
-         if ( numbers == CubeNumbers.Cube_1)
-        {
-            int score = BlueVaultScore+9;
-        }
-        if(numbers == CubeNumbers.Cube_2)
-        {
-            int score = BlueVaultScore+9;
-        }
-        if (numbers == CubeNumbers.Cube_3)
-        {
-            int score = BlueVaultScore+9;
-        }
-        if (numbers == CubeNumbers.PLAYED)
-        {
-            int score = BlueVaultScore+0;
-        }
-        if (powerups == PowerUps.Force)
-        {
-            //add the powerup of force
-            
-        }
-        if (powerups == PowerUps.Levitate)
-        {
-            int score = BlueVaultScore+30;
-        }
-        if (powerups == PowerUps.Boost)
-        {
-             int score = BlueVaultScore+120;
-        }
-    }
+   
     
     /**
      * Verify that the specific team is not null.

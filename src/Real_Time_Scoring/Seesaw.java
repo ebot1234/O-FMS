@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 
-package Scoring;
+package Real_Time_Scoring;
 
+import OFMS.FieldAndRobots;
 import java.util.Timer;
+
 
 
 /**
@@ -31,23 +33,40 @@ public class Seesaw {
      //Blue Switch sensors
      boolean blueSwitch1;//same as above
      boolean blueSwitch2;//same as above
-     
-     
-     
-     
-    int score = 0;
+     int score;
+    int BlueVaultScore = 0;
+    int RedVaultScore = 0;
+    int BlueOwnershipScore = 0; 
+    int RedOwnershipscore = 0;
      Timer startTime;
      Timer endTime;
      Timer currentTime;
      
      
-     public void Score(){
+     public void RedOwnership(){
      long Ownership = System.currentTimeMillis() + 1000; // Current time + 1 second
 
         while(true){
             if(Ownership <= System.currentTimeMillis()){
                 
-                score++;
+                RedOwnershipscore++;
+                Ownership += 1000;
+            }
+                try{ 
+                Thread.sleep(5);
+            }catch(Exception ex){
+                
+                System.err.println( ex.getMessage() );
+            }
+        }
+     }
+     public void BlueOwnership(){
+     long Ownership = System.currentTimeMillis() + 1000; // Current time + 1 second
+
+        while(true){
+            if(Ownership <= System.currentTimeMillis()){
+                
+                BlueOwnershipScore++;
                 Ownership += 1000;
             }
                 try{ 
@@ -71,14 +90,15 @@ public class Seesaw {
     }
     
     public void RedScore() {
-        // Variable to keep track of payout timing:
-       Score();
+        // To keep track of the total red score
+       
     }
     public void BlueScore() {
-        // Variable to keep track of payout timing:
-       Score();
+        // To keep track of the total blue score
+       
     }
-
+   
+   
      //this does something? maybe sets the side of the scale and switch
     public void setSeesaw(boolean seesaw) {
         this.seesaw = seesaw;
@@ -87,7 +107,7 @@ public class Seesaw {
         //need to add the current state of the powerups
         
        //scale stuff
-       if(scaleSensor1 = false)
+      /* if(scaleSensor1 = false)
        {
            ownedBy = blueAlliance;
            BlueScore();
@@ -118,7 +138,7 @@ public class Seesaw {
        {
            ownedBy = redAlliance;
            RedScore();
-       }
+       }*/
       
     
     
