@@ -1,9 +1,13 @@
 package OFMS;
 
+import Real_Time_Scoring.GameData;
 import UI.New_UI;
 import UI.UI_Layer;
 import java.awt.Color;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
@@ -33,6 +37,8 @@ public class GovernThread extends Thread {
      * The sole instance of this class - this should be thought of as a new
      * match.
      */
+    
+    private static Random random = new Random();
     private static GovernThread _instance;
     /**
      * Holds a reference to the teams on the field.
@@ -42,6 +48,9 @@ public class GovernThread extends Thread {
      * Holds a reference to the game UI.
      */
     private final New_UI gameUi;
+    
+    
+    
     /**
      * Represents a match in the "no match currently underway" period.
      */
@@ -123,6 +132,10 @@ public class GovernThread extends Thread {
      * shutdown.
      */
     private boolean kill = false;
+    
+    
+    
+    
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Creation And Instances">    
@@ -138,7 +151,7 @@ public class GovernThread extends Thread {
         System.out.println("GovernThread Constructor");
         this.gameUi = gameUi;
         this.field = field;
-    }
+        }
 
     /**
      * Creates a new instance bound to the indicated game UI and field of teams.
@@ -223,19 +236,23 @@ public class GovernThread extends Thread {
         playSound("MATCH_WARMUP.wav");//Play WarmUp sound
         UI_Layer.getInstance().changeProBarColor(WARM_UP);
         
+        
       while (!kill)
       {
           int newMatchTimeMillis = pseudoTimeMillis;
           if(!isWarmUp())
           {
               newMatchTimeMillis -= getWarmUpTimeMillis();
-          }
+              
+   
+     }
           currMatchTimeMillis = (int) getModeTimeMillis() - newMatchTimeMillis;
             PLC_timeSeconds = currMatchTimeMillis / 1000;
 
             if (pseudoTimeMillis <= getTotalTimeMillis()) {
                 UI_Layer.getInstance().updateProBar(((double) pseudoTimeMillis / getTotalTimeMillis()));
                 UI_Layer.getInstance().setMatchTime(fixTime((currMatchTimeMillis / 1000) + ""));
+                
             } else {
                 stopMatch();
             }
@@ -364,6 +381,11 @@ public class GovernThread extends Thread {
             field.resetAllRobots();
         }
     }
+    private static void getRandomItem(List<String> gameData) {
+        //Size of the list is 5
+       int index = random.nextInt(gameData.size());
+       System.out.println("" + gameData.get(index));
+    }
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Match Getters">
@@ -374,7 +396,7 @@ public class GovernThread extends Thread {
      * "Unknown State".
      */
     public String getMatchState() {
-        if (matchMode == NO_MATCH_UNDERWAY_MODE) {
+        if(matchMode == NO_MATCH_UNDERWAY_MODE) {
             return "Disabled";
         } 
         else if(matchMode == WARMUP_MODE){
@@ -388,6 +410,9 @@ public class GovernThread extends Thread {
             return "Unknown State";
         }
     }
+   
+    
+    
 
     /**
      * Determines if the match is in autonomous mode.
@@ -400,7 +425,10 @@ public class GovernThread extends Thread {
     // returns true if the match is in WarmUp mode and determines if the match is in warmup
     public boolean isWarmUp(){
         return matchMode == WARMUP_MODE;
-    }
+        
+       }
+  
+   
     /**
      * Determines whether a match is currently in progress.
      *

@@ -1,5 +1,8 @@
 package Communication;
 
+import OFMS.FieldAndRobots;
+import OFMS.GovernThread;
+import static OFMS.Main.gameData;
 import OFMS.Team;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -7,7 +10,11 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.CRC32;
+import Real_Time_Scoring.GameData;
+import java.util.Random;
 
 /**
  * This class sends packets of information to a driver station.
@@ -29,6 +36,7 @@ public class DSSender {
      * Stored reference to the socket used for communication.
      */
     private DatagramSocket dsock;
+   
 
     /**
      * Gets a instance of DSSender.
@@ -54,6 +62,7 @@ public class DSSender {
         }
     }
 
+   
     /**
      * Returns a byte representation of the position of the teams driver
      * station.
@@ -91,6 +100,7 @@ public class DSSender {
         return 0x52; // Defaults to Red Alliance
     }
 
+  
     /**
      * Updates the Driver Station by creating and sending a packet with the new
      * information.
@@ -123,6 +133,29 @@ public class DSSender {
             e.printStackTrace();
         }
     }
+    Random random = new Random();
+    public void GameSpecficData()
+    {
+         List<String> gameData = new ArrayList<>();
+        //List of the Scale and Switch Vaules
+        gameData.add("LLL");
+        gameData.add("RRR");
+        gameData.add("LRL");
+        gameData.add("RLR");
+        for(int i = 0; i<1; i++){
+        getRandomItem(gameData);
+    }
+        
+    }
+    //Incharge of getting the random item from the list of vaules
+    public void getRandomItem(List<String> gameData) {
+        //Size of the list is 5
+       int index = random.nextInt(gameData.size());
+       System.out.println("" + gameData.get(index));
+    }
+
+   
+    
 
     /**
      * Builds a packet for the DS based off of inputted information.
@@ -136,6 +169,31 @@ public class DSSender {
      * @return The built Datagram Packet
      * @throws SocketException If something goes wrong
      */
+     String gameString= gameData;
+
+    byte[] b = abc.getBytes();
+
+    private DatagramPacket buildGameSpecificDataPacket(InetAddress addr, GameData gameData)
+    {
+       
+       byte[] data = byteData;
+       for(int i = 0; i<4; i++){
+       data[i]= 0;
+       
+    }
+       data[0] = 0;
+       data[1] = (byte) + 2;
+       data[2] = 28;
+       data[3] = (byte)+ 0;
+       
+       
+     return new DatagramPacket(data, data.length, addr, 1121);
+    }
+       
+               
+               
+        
+    
     private DatagramPacket buildPacket(InetAddress addr, byte robotState,
             byte allianceColor, byte station) throws SocketException {
         // Create array
@@ -156,7 +214,8 @@ public class DSSender {
         // Alliance Station
         data[3] = allianceColor; // Color
         data[4] = station; // Station number
-
+        
+        
         // FMS version
         data[18] = 0;
         data[19] = 6;

@@ -8,6 +8,9 @@ import UI.ESTOP_Panel;
 import UI.Msg;
 import UI.New_UI;
 import UI.UI_Layer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
@@ -81,6 +84,8 @@ public class Main {
         getInstance();
     }
 
+     
+    
     /**
      * Gets the current "instance" of Main.
      *
@@ -111,6 +116,8 @@ public class Main {
         // Instantiate Receivers
         ds = new DSReceiver();
         plcReceiver = new PLC_Receiver();
+        // Instantiate the Game Data thingy
+        gameData = new GameData();
 
         // Instantiate Full and Simple UIs then bring up the simple UI
         full_test = new full_UI_Tester();
@@ -139,6 +146,8 @@ public class Main {
 
         // Start FMS Updates for each team
         FieldAndRobots.getInstance().startFMSUpdatesForAllTeams();
+        
+        
 
         //Create array of place-holder team numbers to initialize UI
 
@@ -265,7 +274,7 @@ public class Main {
             PLC_Sender.getInstance().updatePLC_TeamNum(true);
 
             // Not in simple mode
-            simpleMode = false;
+            simpleMode = true;
         } else { // we're not in simple mode...
             // Store current team numbers for later use
             String[][] teams = layer.getBlueRedNumbers();

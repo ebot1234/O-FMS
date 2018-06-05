@@ -313,7 +313,7 @@ public class UI_Layer {
      * able to use multiple UIs and just reset the indicator depending on which
      * UI they wish to use.
      *
-     * @param switcher The button to act as the "switch UI mode's" button.
+     * @param switcher The button to act as the "switch UI mode" button.
      */
     public void setSwitchViewButton(JButton switcher) {
         if (switcherButton != null) {
@@ -522,6 +522,7 @@ public class UI_Layer {
         game.setTeleTime(Integer.parseInt(teleTime));
         game.setAllRobotsToBypassed(false);
         game.resetAllRobots();
+       
     }
 
     /**

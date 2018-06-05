@@ -1,5 +1,8 @@
 package OFMS;
 import Real_Time_Scoring.Seesaw;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * This class represents an FRC playing field and all the teams (robots) upon
@@ -60,6 +63,9 @@ public class FieldAndRobots {
     private int RedVaultScore;
     //Blue Vault Score
     private int BlueVaultScore;
+    
+    Random random = new Random();
+    
     
    
     //</editor-fold>
@@ -171,7 +177,26 @@ public class FieldAndRobots {
             }
         }
     }
-
+    public void setGameData(){
+         //For the generation of the game data
+    {
+        List<String> gameData = new ArrayList<>();
+        //List of the Scale and Switch Vaules
+        gameData.add("LLL");
+        gameData.add("RRR");
+        gameData.add("LRL");
+        gameData.add("RLR");
+        for(int i = 0; i<1; i++){
+        getRandomItem(gameData);
+    }
+    }
+    
+    } 
+    public void getRandomItem(List<String> gameData) {
+        //Size of the list is 5
+       int index = random.nextInt(gameData.size());
+       System.out.println("" + gameData.get(index));
+    }
     /**
      * Sets the bypassed state for all robots managed by and known to this
      * instance.
