@@ -120,6 +120,9 @@ public class DSSender {
         sendPacket(buildPacket(team.getInetAddress(), robotState, allianceColor,
                 station));
     }
+    public void updateGameData(Team team, byte game) throws SocketException{
+        sendPacket(buildGameSpecificDataPacket(team.getInetAddress(), game));
+    }
 
     /**
      * In charge of sending a UDP packet to a Driver Station.
@@ -133,27 +136,7 @@ public class DSSender {
             e.printStackTrace();
         }
     }
-    Random random = new Random();
-    public void GameSpecficData()
-    {
-         List<String> gameData = new ArrayList<>();
-        //List of the Scale and Switch Vaules
-        gameData.add("LLL");
-        gameData.add("RRR");
-        gameData.add("LRL");
-        gameData.add("RLR");
-        for(int i = 0; i<1; i++){
-        getRandomItem(gameData);
-    }
-        
-    }
-    //Incharge of getting the random item from the list of vaules
-    public void getRandomItem(List<String> gameData) {
-        //Size of the list is 5
-       int index = random.nextInt(gameData.size());
-       System.out.println("" + gameData.get(index));
-    }
-
+    
    
     
 
@@ -171,9 +154,9 @@ public class DSSender {
      */
      String gameString = ""+gameData;
 
-    byte[] string = gameString.getBytes();
+    byte[] game = gameString.getBytes();
 
-    private DatagramPacket buildGameSpecificDataPacket(InetAddress addr, byte string)
+    private DatagramPacket buildGameSpecificDataPacket(InetAddress addr, byte game)
     {
        
        byte[] data = new byte[4];
@@ -184,7 +167,7 @@ public class DSSender {
        data[0] = 0;
        data[1] = (byte) + 2;
        data[2] = 28;
-       data[3] = string; //Game data (LRL, RRR, LLL)
+       data[3] = game; //Game data (LRL, RRR, LLL)
        
        
      return new DatagramPacket(data, data.length, addr, 1121);

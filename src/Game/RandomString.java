@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * For the generation of the scale and switch values before the start of the match
  */
 public class RandomString {
-    private static Random random = new Random();
+    private final static Random random = new Random();
     
     public static void main(String[] args)
     {
