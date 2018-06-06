@@ -3,7 +3,7 @@ package OFMS;
 import Communication.DSReceiver;
 import PLC_Aux.PLC_Receiver;
 import PLC_Aux.PLC_Sender;
-import Real_Time_Scoring.GameData;
+import Game.RandomString;
 import UI.ESTOP_Panel;
 import UI.Msg;
 import UI.New_UI;
@@ -67,7 +67,7 @@ public class Main {
      */
     private static boolean simpleMode = true;
     //Adds the class of game Data
-    public static GameData gameData;
+    public static RandomString gameData;
     /**
      * A local reference of the Main instance.
      */
@@ -117,7 +117,7 @@ public class Main {
         ds = new DSReceiver();
         plcReceiver = new PLC_Receiver();
         // Instantiate the Game Data thingy
-        gameData = new GameData();
+        gameData = new RandomString();
 
         // Instantiate Full and Simple UIs then bring up the simple UI
         full_test = new full_UI_Tester();

@@ -13,7 +13,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.CRC32;
-import Real_Time_Scoring.GameData;
+import Game.RandomString;
 import java.util.Random;
 
 /**
@@ -169,14 +169,14 @@ public class DSSender {
      * @return The built Datagram Packet
      * @throws SocketException If something goes wrong
      */
-     String gameString= gameData;
+     String gameString = ""+gameData;
 
-    byte[] b = abc.getBytes();
+    byte[] string = gameString.getBytes();
 
-    private DatagramPacket buildGameSpecificDataPacket(InetAddress addr, GameData gameData)
+    private DatagramPacket buildGameSpecificDataPacket(InetAddress addr, byte string)
     {
        
-       byte[] data = byteData;
+       byte[] data = new byte[4];
        for(int i = 0; i<4; i++){
        data[i]= 0;
        
@@ -184,7 +184,7 @@ public class DSSender {
        data[0] = 0;
        data[1] = (byte) + 2;
        data[2] = 28;
-       data[3] = (byte)+ 0;
+       data[3] = string; //Game data (LRL, RRR, LLL)
        
        
      return new DatagramPacket(data, data.length, addr, 1121);

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Real_Time_Scoring;
+package Game;
 
 import OFMS.FieldAndRobots;
 import java.util.Timer;

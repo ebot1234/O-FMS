@@ -1,6 +1,6 @@
 package OFMS;
 
-import Real_Time_Scoring.GameData;
+import Game.RandomString;
 import UI.New_UI;
 import UI.UI_Layer;
 import java.awt.Color;
@@ -48,6 +48,7 @@ public class GovernThread extends Thread {
      * Holds a reference to the game UI.
      */
     private final New_UI gameUi;
+    
     
     
     
@@ -235,8 +236,14 @@ public class GovernThread extends Thread {
         matchMode = WARMUP_MODE;
         playSound("MATCH_WARMUP.wav");//Play WarmUp sound
         UI_Layer.getInstance().changeProBarColor(WARM_UP);
-        
-        
+        //Sets the Red Vault powerups to zero cubes
+        FieldAndRobots.getInstance().redVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Force);
+        FieldAndRobots.getInstance().redVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Boost);
+        FieldAndRobots.getInstance().redVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Levitate);
+        //Sets the Blue vault power ups to zero cubes
+        FieldAndRobots.getInstance().blueVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Force);
+        FieldAndRobots.getInstance().blueVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Boost);
+        FieldAndRobots.getInstance().blueVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Levitate);
       while (!kill)
       {
           int newMatchTimeMillis = pseudoTimeMillis;

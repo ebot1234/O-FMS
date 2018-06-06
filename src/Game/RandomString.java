@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Real_Time_Scoring;
+package Game;
 import UI.New_UI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
  
 /**
@@ -15,7 +16,7 @@ import java.util.Random;
  * @author Ethen
  * For the generation of the scale and switch values before the start of the match
  */
-public class GameData {
+public class RandomString {
     private static Random random = new Random();
     
     public static void main(String[] args)
@@ -36,6 +37,7 @@ public class GameData {
         //Size of the list is 5
        int index = random.nextInt(gameData.size());
        System.out.println("" + gameData.get(index));
+       
     }
     
 }

@@ -1,5 +1,5 @@
 package OFMS;
-import Real_Time_Scoring.Seesaw;
+import Game.Seesaw;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -332,7 +332,7 @@ public class FieldAndRobots {
     
     public enum CubeNumbers
     {
-        Cube_1, Cube_2, Cube_3, PLAYED;
+        Cube_1, Cube_2, Cube_3, PLAYED, Cube_Zero;
     }
     
     public enum PowerUps
@@ -425,7 +425,8 @@ public class FieldAndRobots {
              int score = BlueVaultScore+120;
         }
     }
-
+       
+        
     
     /**
      * Sets a specific robot to a specific "Special State".

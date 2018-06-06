@@ -58,7 +58,7 @@ public class PLC_Sender {
      * A byte representation of zero - also used as the 'clear' or 'blank' byte.
      */
     private static final byte BYTE_ZERO = "0".getBytes()[0], BYTE_CLEAR = BYTE_ZERO;
-    
+    //2018 Year-Specfic Bytes
     private static final byte ZERO_CUBES = "0cb".getBytes()[0];
     //Adds the byte allocation for the 1 force cube and so on
     private static final byte RED_FORCE_1_CUBE = "RF1".getBytes()[0], RED_FORCE_2_CUBE = "RF2".getBytes()[0],RED_FORCE_3_CUBE = "RF3".getBytes()[0], RED_FORCE_BUTTON = "RF".getBytes()[0];
@@ -77,6 +77,9 @@ public class PLC_Sender {
     private static final byte BLUE_FORCE_RELAY1 = "BFR1".getBytes()[0], BLUE_FORCE_RELAY2 = "BFR2".getBytes()[0], BLUE_FORCE_RELAY3 = "BFR3".getBytes()[0];
     private static final byte BLUE_BOOST_RELAY1 = "BBR1".getBytes()[0], BLUE_BOOST_RELAY2 = "BBR2".getBytes()[0], BLUE_BOOST_RELAY3 = "BBR3".getBytes()[0];
     private static final byte BLUE_LEV_RELAY1 = "BLR1".getBytes()[0], BLUE_LEV_RELAY2 = "BLR2".getBytes()[0], BLUE_LEV_RELAY3 = "BLR3".getBytes()[0];
+    
+
+
     //Scale byte
     private static final byte SCALE_SENSOR1 = "SS1".getBytes()[0], SCALE_SENSOR2 = "SS2".getBytes()[0];
     //Red side Switch
@@ -84,9 +87,10 @@ public class PLC_Sender {
     //Blue side Switch
     private static final byte BLUE_SWITCH_SENSOR2 = "BSS2".getBytes()[0], BLUE_SWITCH_SENSOR1 = "BSS1".getBytes()[0];
     private static final byte NeitherAlliance = "NA".getBytes()[0];
-    private static final byte SCALE_RELAY1 = "SR1".getBytes()[0], SCALE_RELAY2 = "SR2".getBytes()[0], SCALE_RELAY3 = "SR3".getBytes()[0];
-    private static final byte RED_SWITCH_RELAY1 = "RSR1".getBytes()[0], RED_SWITCH_RELAY2 = "RSR2".getBytes()[0], RED_SWITCH_RELAY3 = "RSR3".getBytes()[0], RED_SWITCH_RELAY_4 = "RSR4".getBytes()[0];
-    private static final byte BLUE_SWITCH_RELAY1 = "BSR1".getBytes()[0], BLUE_SWITCH_RELAY2 = "BSR2".getBytes()[0], BLUE_SWITCH_RELAY3 = "BSR3".getBytes()[0];
+    //Scale and Switch relays for the lights
+    private static final byte SCALE_RELAY1 = "SR1".getBytes()[0], SCALE_RELAY2 = "SR2".getBytes()[0], SCALE_RELAY3 = "SR3".getBytes()[0], SCALE_RELAY4 = "SR4".getBytes()[0], SCALE_RELAY5 = "SR5".getBytes()[0], SCALE_RELAY6 = "SR6".getBytes()[0];
+    private static final byte RED_SWITCH_RELAY1 = "RSR1".getBytes()[0], RED_SWITCH_RELAY2 = "RSR2".getBytes()[0], RED_SWITCH_RELAY3 = "RSR3".getBytes()[0], RED_SWITCH_RELAY_4 = "RSR4".getBytes()[0], RED_SWITCH_RELAY_5 = "RSR5".getBytes()[0],RED_SWITCH_RELAY_6 = "RSR6".getBytes()[0];
+    private static final byte BLUE_SWITCH_RELAY1 = "BSR1".getBytes()[0], BLUE_SWITCH_RELAY2 = "BSR2".getBytes()[0], BLUE_SWITCH_RELAY3 = "BSR3".getBytes()[0], BLUE_SWITCH_RELAY_4 = "BSR4".getBytes()[0], BLUE_SWITCH_RELAY_5 = "BSR5".getBytes()[0], BLUE_SWITCH_RELAY_6 = "BSR6".getBytes()[0];
     /**
      * Holds a local copy, from Field And Robots, of the integer value for the
      * Red and Blue alliances. This is used later for accessing a specific
@@ -110,7 +114,7 @@ public class PLC_Sender {
      * The previous packets for team number, lights, time, and ViewMarq - these
      * are used later to compare packets and ensure you wont over-send a packet.
      */
-    private DatagramPacket prevTeamNumPacket = null, prevLightsPacket = null, prevTimePacket = null, prevVM_Packet = null;
+    private DatagramPacket prevTeamNumPacket = null, prevLightsPacket = null, prevTimePacket = null, prevVM_Packet = null, prevRedVaultPacket = null, prevBlueVaultPacket = null, prevBlueSwitchLightsPacket = null, prevRedSwitchLightsPacket = null, prevScaleLightsPacket = null;
     /**
      * An 'instance' of this class - there can be only one. This is that one.
      */
@@ -154,6 +158,7 @@ public class PLC_Sender {
      *
      * @param forceSend
      */
+   
     public final void updateViewMarq(boolean forceSend) {
         System.out.println("PLC Update ViewMarq - Custom");
         try {
@@ -206,7 +211,76 @@ public class PLC_Sender {
             System.out.println("PLC Error 3 - Lights!\n");
         }
     }
-
+    public final void updateRedVault(boolean forceSend){
+        try{
+            DatagramPacket RedVaultPacket = buildRedVaultPacket();
+            if(forceSend) {
+                System.out.println("Force Sending - Red Vault");
+                dsock.send(RedVaultPacket);
+            } else if (!Arrays.equals(RedVaultPacket.getData(), prevRedVaultPacket.getData())){
+            dsock.send(RedVaultPacket);
+            }else{
+            } prevRedVaultPacket = RedVaultPacket;
+        } catch(IOException e){
+            System.out.println("PLC Error 4 - Red Vault!\n");
+        }
+    } 
+    public final void updateBlueVault(boolean forceSend){
+        try{
+            DatagramPacket BlueVaultPacket = buildBlueVaultPacket();
+            if(forceSend) {
+                System.out.println("Force Sending - Blue Vault");
+                dsock.send(BlueVaultPacket);
+            } else if (!Arrays.equals(BlueVaultPacket.getData(), prevBlueVaultPacket.getData())){
+            dsock.send(BlueVaultPacket);
+            }else{
+            } prevRedVaultPacket = BlueVaultPacket;
+        } catch(IOException e){
+            System.out.println("PLC Error 4 - Blue Vault!\n");
+        }
+    }
+    public final void updateRedSwitchLights(boolean forceSend){
+        try{
+            DatagramPacket RedSwitchLightsPacket = buildRedSwitchLightsPacket();
+            if(forceSend){
+                System.out.println("Force Sending - PLC Red Switch Lights");
+                dsock.send(RedSwitchLightsPacket);
+            } else if (!Arrays.equals(RedSwitchLightsPacket.getData(), prevRedSwitchLightsPacket.getData())){
+                dsock.send(RedSwitchLightsPacket);
+            } else {
+                 } prevRedSwitchLightsPacket = RedSwitchLightsPacket;
+        }  catch(IOException e){
+                          System.out.println("PLC Error 5 - RED SWITCH LIGHTS!\n");
+                         }    }
+    
+    public final void updateBlueSwitchLights(boolean forceSend){
+        try{
+            DatagramPacket BlueSwitchLightsPacket = buildBlueSwitchLightsPacket();
+            if (forceSend){
+                System.out.println("Force Sending PLC Blue Switch Lights");
+                dsock.send(BlueSwitchLightsPacket);
+            } else if (!Arrays.equals(BlueSwitchLightsPacket.getData(), prevBlueSwitchLightsPacket.getData())){
+                dsock.send(BlueSwitchLightsPacket);
+            } else{
+            } prevBlueSwitchLightsPacket =  BlueSwitchLightsPacket;
+        }catch(IOException e){
+            System.out.println("PLC Error 6 - BLUE SWITCH LIGHTS\n");
+        }
+    }
+    public final void updateScaleLights(boolean forceSend){
+        try{
+            DatagramPacket ScaleLightsPacket = buildScaleLightsPacket();
+            if (forceSend){
+                System.out.println("Force Sending PLC Scale Lights");
+                dsock.send(ScaleLightsPacket);
+            } else if (!Arrays.equals(ScaleLightsPacket.getData(), prevScaleLightsPacket.getData())){
+                dsock.send(ScaleLightsPacket);
+            } else{
+            } prevScaleLightsPacket =  ScaleLightsPacket;
+        }catch(IOException e){
+            System.out.println("PLC Error 6 - SCALE LIGHTS\n");
+        }
+    }
     public final void updatePLC_Time(boolean forceSend) {
         //System.out.println("PLC Update Time");
         try {
@@ -459,9 +533,9 @@ public class PLC_Sender {
     private DatagramPacket buildRedVaultPacket() throws SocketException {
         //System.out.println("Building packet for PLC...");
 
-        byte[] data = new byte[25];
+        byte[] data = new byte[29];
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 29; i++) {
             data[i] = BYTE_ZERO;
         }
 
@@ -531,9 +605,9 @@ public class PLC_Sender {
      private DatagramPacket buildBlueVaultPacket() throws SocketException {
         //System.out.println("Building packet for PLC...");
 
-        byte[] data = new byte[25];
+        byte[] data = new byte[29];
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 29; i++) {
             data[i] = BYTE_ZERO;
         }
 
@@ -636,23 +710,6 @@ public class PLC_Sender {
             data[8] = BLUE_SWITCH_SENSOR2;
             data[9] = BYTE_CLEAR;
             
-           //Scale relays for lights
-           data[10] = SCALE_RELAY1;
-           data[11] = SCALE_RELAY2;
-           data[12] = SCALE_RELAY3;
-           data[13] = BYTE_CLEAR;
-           
-           //Red Switch relays for lights
-           data[14] = RED_SWITCH_RELAY1;
-           data[15] = RED_SWITCH_RELAY2;
-           data[16] = RED_SWITCH_RELAY3;
-           data[17] = BYTE_CLEAR;
-           
-           //Blue Switch relays for lights
-           data[18] = BLUE_SWITCH_RELAY1;
-           data[19] = BLUE_SWITCH_RELAY2;
-           data[20] = BLUE_SWITCH_RELAY3;
-           data[21] = BYTE_CLEAR;
         
         }else {
             System.out.println("Scale and Switch PACKET SEND ERROR");
@@ -662,13 +719,121 @@ public class PLC_Sender {
         byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
 
         // CRC hash
-        data[22] = crc[0];
-        data[23] = crc[1];
-        data[24] = crc[2];
-        data[25] = crc[3];
+        data[10] = crc[0];
+        data[11] = crc[1];
+        data[12] = crc[2];
+        data[13] = crc[3];
 
         return new DatagramPacket(data, data.length, addr, 5000);
     }
+     private DatagramPacket buildScaleLightsPacket(){
+         byte[] data = new byte[11];
+         for(int i = 0; i < 11; i++){
+             data[i] = BYTE_ZERO;
+         }
+         boolean matchRunning;
+        if (GovernThread.getInstance() != null) {
+            matchRunning = GovernThread.getInstance().isMatchRunning();
+        } else {
+            matchRunning = false;
+        }
+        FieldAndRobots FAR;
+        if (FieldAndRobots.getInstance() != null) {
+            FAR = FieldAndRobots.getInstance();
+            
+            data[0] = SCALE_RELAY1;
+            data[1] = SCALE_RELAY2;
+            data[2] = SCALE_RELAY3;
+            data[3] = SCALE_RELAY4;
+            data[4] = SCALE_RELAY5;
+            data[5] = SCALE_RELAY6;
+        }else {
+            System.out.println("SCALE LIGHTS PACKET SEND ERROR");
+        }
+        CRC32 check = new CRC32();
+        check.update(data);
+        byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
+
+        // CRC hash
+        data[6] = crc[0];
+        data[8] = crc[1];
+        data[9] = crc[2];
+        data[10] = crc[3];
+
+        return new DatagramPacket(data, data.length, addr, 5000);
+     }
+    private DatagramPacket buildRedSwitchLightsPacket(){
+        byte[] data = new byte[11];
+         for(int i = 0; i < 11; i++){
+             data[i] = BYTE_ZERO;
+         }
+         boolean matchRunning;
+        if (GovernThread.getInstance() != null) {
+            matchRunning = GovernThread.getInstance().isMatchRunning();
+        } else {
+            matchRunning = false;
+        }
+        FieldAndRobots FAR;
+        if (FieldAndRobots.getInstance() != null) {
+            FAR = FieldAndRobots.getInstance();
+            
+            data[0] = RED_SWITCH_RELAY1;
+            data[1] = RED_SWITCH_RELAY2;
+            data[2] = RED_SWITCH_RELAY3;
+            data[3] = RED_SWITCH_RELAY_4;
+            data[4] = RED_SWITCH_RELAY_5;
+            data[5] = RED_SWITCH_RELAY_6;
+        }else {
+            System.out.println("SCALE LIGHTS PACKET SEND ERROR");
+        }
+        CRC32 check = new CRC32();
+        check.update(data);
+        byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
+
+        // CRC hash
+        data[6] = crc[0];
+        data[8] = crc[1];
+        data[9] = crc[2];
+        data[10] = crc[3];
+
+        return new DatagramPacket(data, data.length, addr, 5000);
+     }
+    private DatagramPacket buildBlueSwitchLightsPacket(){
+        byte[] data = new byte[11];
+         for(int i = 0; i < 11; i++){
+             data[i] = BYTE_ZERO;
+         }
+         boolean matchRunning;
+        if (GovernThread.getInstance() != null) {
+            matchRunning = GovernThread.getInstance().isMatchRunning();
+        } else {
+            matchRunning = false;
+        }
+        FieldAndRobots FAR;
+        if (FieldAndRobots.getInstance() != null) {
+            FAR = FieldAndRobots.getInstance();
+            
+            data[0] = BLUE_SWITCH_RELAY1;
+            data[1] = BLUE_SWITCH_RELAY2;
+            data[2] = BLUE_SWITCH_RELAY3;
+            data[3] = BLUE_SWITCH_RELAY_4;
+            data[4] = BLUE_SWITCH_RELAY_5;
+            data[5] = BLUE_SWITCH_RELAY_6;
+        }else {
+            System.out.println("SCALE LIGHTS PACKET SEND ERROR");
+        }
+        CRC32 check = new CRC32();
+        check.update(data);
+        byte[] crc = ByteBuffer.allocate(4).putInt((int) check.getValue()).array();
+
+        // CRC hash
+        data[6] = crc[0];
+        data[8] = crc[1];
+        data[9] = crc[2];
+        data[10] = crc[3];
+
+        return new DatagramPacket(data, data.length, addr, 5000);
+     }
     
      
     private DatagramPacket buildViewMarqPacket() {
