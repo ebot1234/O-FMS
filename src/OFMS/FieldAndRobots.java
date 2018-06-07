@@ -64,6 +64,7 @@ public class FieldAndRobots {
     //Blue Vault Score
     private int BlueVaultScore;
     
+    
     Random random = new Random();
     
     
@@ -318,7 +319,7 @@ public class FieldAndRobots {
         }
         return allReady;
     }
-
+    
    
 
     /**
@@ -422,9 +423,14 @@ public class FieldAndRobots {
         }
         if (powerups == FieldAndRobots.PowerUps.Boost)
         {
-             int score = BlueVaultScore+120;
+             Boost();
         }
     }
+    
+   
+        
+    
+    
        
         
     

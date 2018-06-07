@@ -11,6 +11,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import Game.RandomString;
+
+import static OFMS.Main.gameData;
+import java.util.List;
 
 /**
  * Receives packet information(such as ESTOP status) from the PLC.
@@ -76,6 +80,7 @@ public class PLC_Receiver extends Thread {
     public static void resetFieldESTOPPED() {
         field_ESTOPPED = false;
     }
+    
 
     /**
      * Method called when you call "Thread.start();" - Receives packets from the
@@ -206,6 +211,122 @@ public class PLC_Receiver extends Thread {
                     }
                     // }
                 }
+                
+                
+                //Scale and Switch plc stuff
+                //If the plc get the game data is equal to LLL
+                if(dataStr.substring(0).equals("LLL"))
+                {
+                    if(dataStr.substring(0).equals("SS1"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        //Add blue score
+                    }
+                }
+                //if the game data is RRR
+                if(dataStr.substring(0).equals("RRR"))
+                {
+                     if(dataStr.substring(0).equals("SS1"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        //Add red score
+                    }
+                }
+                //if the game data is LRL
+                if(dataStr.substring(0).equals("LRL"))
+                {
+                     if(dataStr.substring(0).equals("SS1"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        //Add red score
+                    }
+                }
+                if(dataStr.substring(0).equals("RLR"))
+                {
+                     if(dataStr.substring(0).equals("SS1"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        //Add red score
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        //Add blue score
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        //Add red score
+                    }
+                }
+                
+                //Power ups
                 //If the Red Force becomes active
                 if(dataStr.substring(0).equals("RF1"))
                 {
@@ -333,9 +454,15 @@ public class PLC_Receiver extends Thread {
                     FieldAndRobots.getInstance().blueVault
         (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
                 }
-                //add the stuff for the scale and switch scoring
-                //add lights for vaults
+                //Red Switch Scoring
+                if(dataStr.substring(0).equals("RLS1"))
+                {
                     
+                }
+               
+
+
+               
                /*
                * Third Byte = System Status Code(blue then red)
                */
