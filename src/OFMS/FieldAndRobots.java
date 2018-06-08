@@ -60,9 +60,9 @@ public class FieldAndRobots {
      */
     private static FieldAndRobots _instance;
     //Red Vault Score
-    private int RedVaultScore;
+    int RedVaultScore = 0;
     //Blue Vault Score
-    private int BlueVaultScore;
+    int BlueVaultScore = 0;
     
     
     Random random = new Random();
