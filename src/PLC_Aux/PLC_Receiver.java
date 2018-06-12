@@ -13,6 +13,9 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import Game.RandomString;
 
+import OFMS.FieldAndRobots.CubeNumbers;
+import Game.Scoring;
+
 import static OFMS.Main.gameData;
 import java.util.List;
 
@@ -28,6 +31,7 @@ import java.util.List;
  */
 public class PLC_Receiver extends Thread {
 
+   
     /**
      * Holds the socket used for communication.
      */
@@ -47,7 +51,7 @@ public class PLC_Receiver extends Thread {
     /**
      * The string data received from the PLC.
      */
-    private String dataStr;
+    public String dataStr;
     /**
      * Holds the value for if the field, as a whole, has been ESTOPPED.
      */
@@ -212,34 +216,33 @@ public class PLC_Receiver extends Thread {
                     // }
                 }
                 
-                
                 //Scale and Switch plc stuff
                 //If the plc get the game data is equal to LLL
                 if(dataStr.substring(0).equals("LLL"))
                 {
                     if(dataStr.substring(0).equals("SS1"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(1).equals("SS2"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(2).equals("RSS1"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(3).equals("RSS2"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(4).equals("BSS1"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(5).equals("BSS2"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                 }
                 //if the game data is RRR
@@ -247,27 +250,27 @@ public class PLC_Receiver extends Thread {
                 {
                      if(dataStr.substring(0).equals("SS1"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(1).equals("SS2"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(2).equals("RSS1"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(3).equals("RSS2"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(4).equals("BSS1"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(5).equals("BSS2"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                 }
                 //if the game data is LRL
@@ -275,78 +278,78 @@ public class PLC_Receiver extends Thread {
                 {
                      if(dataStr.substring(0).equals("SS1"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(1).equals("SS2"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(2).equals("RSS1"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(3).equals("RSS2"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(4).equals("BSS1"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(5).equals("BSS2"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                 }
                 if(dataStr.substring(0).equals("RLR"))
                 {
                      if(dataStr.substring(0).equals("SS1"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(1).equals("SS2"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(2).equals("RSS1"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                     if(dataStr.substring(3).equals("RSS2"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(4).equals("BSS1"))
                     {
-                        //Add blue score
+                        FieldAndRobots.getInstance().BlueOwnership();
                     }
                     if(dataStr.substring(5).equals("BSS2"))
                     {
-                        //Add red score
+                        FieldAndRobots.getInstance().RedOwnership();
                     }
                 }
-                
+               
                 //Power ups
                 //If the Red Force becomes active
                 if(dataStr.substring(0).equals("RF1"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                     (Scoring.PowerUps.Force_1);
                 }
                 if (dataStr.substring(1).equals("RF2"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                       (Scoring.PowerUps.Force_2);
                 }
                 if(dataStr.substring(2).equals("RF3"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                    (Scoring.PowerUps.Force_3);
                 }
-                if(dataStr.substring(9).equals("RF"))
+               /* if(dataStr.substring(9).equals("RF"))
                 {
                     FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Force);
+        (Scoring.CubeNumbers.PLAYED, Scoring.PowerUps.Force);
                 }
                 //For Red boost
                 if(dataStr.substring(6).equals("RB1"))

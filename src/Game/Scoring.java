@@ -5,25 +5,33 @@
  */
 package Game;
 
-import OFMS.FieldAndRobots;
+
+import PLC_Aux.PLC_Receiver;
+import PLC_Aux.PLC_Sender;
 /**
  *
- * @author ellen.estep.one
+ * @author Ethen B. 
  */
 public class Scoring {
-    int RedOwnershipScore;
-    int BlueOwnershipScore;
+    
+    private static Scoring _instance;
+
+   
+    private String dataStr;
+    //Red and Blue Ownership Scores
+    public int RedOwnershipScore;
+    public int BlueOwnershipScore;
     //Red and Blue total score
-    int RedScore = 0;
-    int BlueScore = 0;
+    public int RedScore = 0;
+    public int BlueScore = 0;
     //Red Vault Score
-    int RedVaultScore = 0;
+    public int RedVaultScore = 0;
     //Blue Vault Score
-    int BlueVaultScore = 0;
-    int RedTechFouls;
-    int RedFouls;
-    int BlueTechFouls;
-    int BlueFouls;
+    public int BlueVaultScore = 0;
+    public int RedTechFouls;
+    public int RedFouls;
+    public int BlueTechFouls;
+    public int BlueFouls;
     
     
     public void RedScore(){
@@ -67,17 +75,18 @@ public class Scoring {
             }
         }
     }
+ 
     
     //Power ups and Vault 
     
      public enum CubeNumbers
     {
-        Cube_1, Cube_2, Cube_3, Cube_Zero, Force_PLAYED, Levitate_PLAYED, Boost_PLAYED;
+        Cube_1, Cube_2, Cube_3, Cube_Zero, Lev_PLAYED, Force_PLAYED, Boost_PLAYED;
     }
     
     public enum PowerUps
     {
-        Force, Levitate, Boost;
+        Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3;;
     }
     public void RedBoost()
     {
@@ -86,11 +95,11 @@ public class Scoring {
         while(true){
             if(Boost <= System.currentTimeMillis()){
                 
-                int Redscore = RedVaultScore*2;
+                 RedScore = RedVaultScore*2;
                 Boost += 10000;
             }
                 try{ 
-                Thread.sleep(5);
+                Thread.sleep(5); //Does this command for 10 seconds
             }catch(Exception ex){
                 
                 System.err.println( ex.getMessage() );
@@ -104,43 +113,65 @@ public class Scoring {
         while(true){
             if(Boost <= System.currentTimeMillis()){
                 
-                int Bluescore = BlueVaultScore*2;
+                BlueScore = BlueVaultScore*2;
                 Boost += 10000;
             }
                 try{ 
-                Thread.sleep(5);
+                Thread.sleep(10);//Does this command for 10 seconds
             }catch(Exception ex){
                 
                 System.err.println( ex.getMessage() );
             }
         }
      }
-     public void redVault(Scoring.CubeNumbers numbers,Scoring.PowerUps powerups )
+     public void redVault(Scoring.CubeNumbers numbers, Scoring.PowerUps powerUps)
     {
-        //the score for each cubes in the vault
-        if ( numbers == Scoring.CubeNumbers.Cube_1)
+        //Red force PowerUp
+       
+         if (Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Force_PLAYED)
         {
-          int RedScore = RedVaultScore + 3;
         }
-        if(numbers == Scoring.CubeNumbers.Cube_2)
+         if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Force_PLAYED)
+         {
+             RedScore = RedOwnershipScore*2;
+             
+         }
+        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Force_PLAYED)
         {
-            int RedScore = RedVaultScore + 3;
+            RedScore = RedOwnershipScore*2;
+            
         }
-        if (numbers == Scoring.CubeNumbers.Cube_3)
+     
+            
+        
+        //Red Boost PowerUp
+        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Boost_PLAYED)
         {
-            int RedScore = RedVaultScore + 3;
-        }
-        if (numbers == Scoring.CubeNumbers.Force_PLAYED)
-        {
-            int RedScore = RedVaultScore*2;
-        }
-        if(numbers == Scoring.CubeNumbers.Boost_PLAYED)
-        {
+           
             RedBoost();
         }
-        if(numbers == Scoring.CubeNumbers.Levitate_PLAYED)
+        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Boost_PLAYED)
         {
-            int RedScore = RedVaultScore + 30;
+           
+            RedBoost();
+        }
+        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Boost_PLAYED)
+        {
+            
+            RedBoost();
+        }
+        //Red Levitate PowerUp
+        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Lev_PLAYED)
+        {
+            RedScore = RedVaultScore+0;
+        }
+        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Lev_PLAYED)
+        {
+            RedScore = RedVaultScore+0;
+        }
+        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Lev_PLAYED)
+        {
+            RedScore = RedVaultScore+30;
         }
     }
     
@@ -148,30 +179,49 @@ public class Scoring {
     
     public void blueVault(Scoring.CubeNumbers numbers, Scoring.PowerUps powerups)
     {
-        //Add the cube numbers for the Blue Vault
-         if ( numbers == Scoring.CubeNumbers.Cube_1)
+        //For the Blue PowerUps when they are played
+        //Blue force PowerUp 
+         if (Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Force_PLAYED)
         {
-            int score = BlueVaultScore+9;
+             BlueScore = BlueOwnershipScore*2;
         }
-        if(numbers == Scoring.CubeNumbers.Cube_2)
+         if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Force_PLAYED)
+         {
+             BlueScore = BlueOwnershipScore*2;
+         }
+        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Force_PLAYED)
         {
-            int score = BlueVaultScore+9;
+            BlueScore = BlueOwnershipScore*2;
         }
-        if (numbers == Scoring.CubeNumbers.Cube_3)
+        
+        //Blue Boost PowerUp
+        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Boost_PLAYED)
         {
-            int score = BlueVaultScore+9;
-        }
-         if (numbers == Scoring.CubeNumbers.Force_PLAYED)
-        {
-            int BlueScore = BlueVaultScore*2;
-        }
-        if(numbers == Scoring.CubeNumbers.Boost_PLAYED)
-        {
+            BlueScore = BlueVaultScore+3;
             BlueBoost();
         }
-        if(numbers == Scoring.CubeNumbers.Levitate_PLAYED)
+        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Boost_PLAYED)
         {
-            int BlueScore = BlueVaultScore + 30;
+            BlueScore = BlueVaultScore+3;
+            BlueBoost();
+        }
+        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Boost_PLAYED)
+        {
+            BlueScore  = BlueVaultScore+3;
+            BlueBoost();
+        }
+        //Blues Levitate PowerUp
+        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Lev_PLAYED)
+        {
+            BlueScore = BlueVaultScore+0;
+        }
+        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Lev_PLAYED)
+        {
+            BlueScore = BlueVaultScore+0;
+        }
+        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Lev_PLAYED)
+        {
+            BlueScore = BlueVaultScore+30;
         }
     }
     
