@@ -436,6 +436,18 @@ public class FieldAndRobots {
             RedScore = RedOwnershipScore*2;
             
         }
+        if(Scoring.CubeNumbers.Force_1 == Scoring.CubeNumbers.Cube_1)
+        {
+            RedScore = RedOwnershipScore+3;
+        }
+         if(Scoring.CubeNumbers.Force_2 == Scoring.CubeNumbers.Cube_2)
+        {
+            RedScore = RedOwnershipScore+3;
+        }
+          if(Scoring.CubeNumbers.Force_3 == Scoring.CubeNumbers.Cube_3)
+        {
+            RedScore = RedOwnershipScore+3;
+        }
     }
         public void redVaultBoost(Scoring.CubeNumbers numbers)
         {
@@ -445,12 +457,24 @@ public class FieldAndRobots {
             }
             if(Scoring.CubeNumbers.Boost_2 == Scoring.CubeNumbers.Boost_PLAYED)
             {
-            
+                RedBoost();
             }
             if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Boost_PLAYED)
             {
-                
+                RedBoost();
             }
+             if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Cube_1)
+             {
+                     RedScore = RedOwnershipScore+3;
+             }
+             if(Scoring.CubeNumbers.Boost_2 == Scoring.CubeNumbers.Cube_2)
+             {
+                    RedScore = RedOwnershipScore+3;
+             }
+             if(Scoring.CubeNumbers.Boost_3 == Scoring.CubeNumbers.Cube_3)
+             {
+                 RedScore = RedOwnershipScore+3;
+             }
         }
         public void redVaultLev(Scoring.CubeNumbers numbers)
         {
@@ -465,6 +489,18 @@ public class FieldAndRobots {
             if(Scoring.CubeNumbers.Levitate_3 == Scoring.CubeNumbers.Levitate_3)
             {
                 
+            }
+            if(Scoring.CubeNumbers.Levitate_1 == Scoring.CubeNumbers.Cube_1)
+            {
+                RedScore = RedVaultScore+3;
+            }
+            if(Scoring.CubeNumbers.Levitate_2 == Scoring.CubeNumbers.Cube_2)
+            {
+                    RedScore = RedVaultScore+3;
+            }
+            if(Scoring.CubeNumbers.Levitate_3 == Scoring.CubeNumbers.Cube_3)
+            {
+                RedScore = RedVaultScore+3;
             }
         }
 
