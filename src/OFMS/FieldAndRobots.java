@@ -343,7 +343,7 @@ public class FieldAndRobots {
     
     public enum PowerUps
     {
-        Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3;
+        Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3, PLAYED;
     }
   
      public void RedOwnership(){
@@ -417,52 +417,52 @@ public class FieldAndRobots {
             }
         }
      }
-     public void redVaultForce(Scoring.PowerUps powerUps)
+     public void redVaultForce(Scoring.CubeNumbers numbers)
     {
         //Red force PowerUp
        
-         if (Scoring.PowerUps.Force_1 == Scoring.PowerUps.Force_PLAYED)
+         if (Scoring.CubeNumbers.Force_1 == Scoring.CubeNumbers.Force_PLAYED)
         {
             RedScore = RedOwnershipScore*2;
         }
         
-         if(Scoring.PowerUps.Force_2 == Scoring.PowerUps.Force_PLAYED)
+         if(Scoring.CubeNumbers.Force_2 == Scoring.CubeNumbers.Force_PLAYED)
          {
              RedScore = RedOwnershipScore*2;
              
          }
-        if(Scoring.PowerUps.Force_3 == Scoring.PowerUps.Force_PLAYED)
+        if(Scoring.CubeNumbers.Force_3 == Scoring.CubeNumbers.Force_PLAYED)
         {
             RedScore = RedOwnershipScore*2;
             
         }
     }
-        public void redVaultBoost(Scoring.PowerUps powerUps)
+        public void redVaultBoost(Scoring.CubeNumbers numbers)
         {
-            if(Scoring.PowerUps.Boost_1 == Scoring.PowerUps.Boost_PLAYED)
+            if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Boost_PLAYED)
             {
                 RedBoost();
             }
-            if(Scoring.PowerUps.Boost_2 == Scoring.PowerUps.Boost_PLAYED)
+            if(Scoring.CubeNumbers.Boost_2 == Scoring.CubeNumbers.Boost_PLAYED)
             {
             
             }
-            if(Scoring.PowerUps.Boost_1 == Scoring.PowerUps.Boost_PLAYED)
+            if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Boost_PLAYED)
             {
                 
             }
         }
-        public void redVaultLev(Scoring.PowerUps powerUps)
+        public void redVaultLev(Scoring.CubeNumbers numbers)
         {
-            if(Scoring.PowerUps.Levitate_1 == Scoring.PowerUps.Lev_PLAYED)
+            if(Scoring.CubeNumbers.Levitate_1 == Scoring.CubeNumbers.Lev_PLAYED)
             {
             
             }
-            if(Scoring.PowerUps.Levitate_2 == Scoring.PowerUps.Lev_PLAYED)
+            if(Scoring.CubeNumbers.Levitate_2 == Scoring.CubeNumbers.Lev_PLAYED)
             {
             
             }
-            if(Scoring.PowerUps.Levitate_3 == Scoring.PowerUps.Levitate_3)
+            if(Scoring.CubeNumbers.Levitate_3 == Scoring.CubeNumbers.Levitate_3)
             {
                 
             }
@@ -470,87 +470,6 @@ public class FieldAndRobots {
 
      
             
-        
-       /* //Red Boost PowerUp
-        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Boost_PLAYED)
-        {
-           
-            RedBoost();
-        }
-        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Boost_PLAYED)
-        {
-           
-            RedBoost();
-        }
-        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Boost_PLAYED)
-        {
-            
-            RedBoost();
-        }
-        //Red Levitate PowerUp
-        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Lev_PLAYED)
-        {
-            RedScore = RedVaultScore+0;
-        }
-        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Lev_PLAYED)
-        {
-            RedScore = RedVaultScore+0;
-        }
-        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Lev_PLAYED)
-        {
-            RedScore = RedVaultScore+30;
-        }
-    }
-    
-    
-    
-    public void blueVault(Scoring.CubeNumbers numbers, Scoring.PowerUps powerups)
-    {
-        //For the Blue PowerUps when they are played
-        //Blue force PowerUp 
-         if (Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Force_PLAYED)
-        {
-             BlueScore = BlueOwnershipScore*2;
-        }
-         if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Force_PLAYED)
-         {
-             BlueScore = BlueOwnershipScore*2;
-         }
-        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Force_PLAYED)
-        {
-            BlueScore = BlueOwnershipScore*2;
-        }
-        
-        //Blue Boost PowerUp
-        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Boost_PLAYED)
-        {
-            BlueScore = BlueVaultScore+3;
-            BlueBoost();
-        }
-        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Boost_PLAYED)
-        {
-            BlueScore = BlueVaultScore+3;
-            BlueBoost();
-        }
-        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Boost_PLAYED)
-        {
-            BlueScore  = BlueVaultScore+3;
-            BlueBoost();
-        }
-        //Blues Levitate PowerUp
-        if(Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Lev_PLAYED)
-        {
-            BlueScore = BlueVaultScore+0;
-        }
-        if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Lev_PLAYED)
-        {
-            BlueScore = BlueVaultScore+0;
-        }
-        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Lev_PLAYED)
-        {
-            BlueScore = BlueVaultScore+30;
-        }
-    }
     
    
         

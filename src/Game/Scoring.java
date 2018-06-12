@@ -6,6 +6,7 @@
 package Game;
 
 
+import static OFMS.Main.gameData;
 import PLC_Aux.PLC_Receiver;
 import PLC_Aux.PLC_Sender;
 /**
@@ -81,12 +82,12 @@ public class Scoring {
     
      public enum CubeNumbers
     {
-        Cube_1, Cube_2, Cube_3, Cube_Zero, Lev_PLAYED, Force_PLAYED, Boost_PLAYED;
+        Cube_1, Cube_2, Cube_3, Cube_Zero, Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3, PLAYED;;
     }
     
     public enum PowerUps
     {
-        Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3;;
+        Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3, PLAYED;
     }
     public void RedBoost()
     {
@@ -124,21 +125,23 @@ public class Scoring {
             }
         }
      }
-     public void redVault(Scoring.CubeNumbers numbers, Scoring.PowerUps powerUps)
+     public void redVault(Scoring.CubeNumbers numbers )
     {
         //Red force PowerUp
        
-         if (Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Force_PLAYED)
+         if (Scoring.CubeNumbers.Cube_1 == Scoring.CubeNumbers.Force_1)
         {
+            RedScore = RedVaultScore+3;
         }
-         if(Scoring.CubeNumbers.Cube_2 == Scoring.CubeNumbers.Force_PLAYED)
+         if(Scoring.CubeNumbers.Cube_2 != Scoring.CubeNumbers.Force_2)
          {
-             RedScore = RedOwnershipScore*2;
+             RedScore = RedVaultScore+3;
+         } 
              
-         }
-        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Force_PLAYED)
+       
+        if(Scoring.CubeNumbers.Cube_3 == Scoring.CubeNumbers.Force_3)
         {
-            RedScore = RedOwnershipScore*2;
+            RedScore = RedVaultScore+3;
             
         }
      

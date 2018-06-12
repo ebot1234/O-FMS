@@ -334,67 +334,67 @@ public class PLC_Receiver extends Thread {
                 if(dataStr.substring(0).equals("RF1"))
                 {
                     FieldAndRobots.getInstance().redVaultForce
-                     (Scoring.PowerUps.Force_1);
+                     (Scoring.CubeNumbers.Force_1);
                 }
                 if (dataStr.substring(1).equals("RF2"))
                 {
                     FieldAndRobots.getInstance().redVaultForce
-                       (Scoring.PowerUps.Force_2);
+                       (Scoring.CubeNumbers.Force_2);
                 }
                 if(dataStr.substring(2).equals("RF3"))
                 {
                     FieldAndRobots.getInstance().redVaultForce
-                    (Scoring.PowerUps.Force_3);
+                    (Scoring.CubeNumbers.Force_3);
                 }
-               /* if(dataStr.substring(9).equals("RF"))
+                if(dataStr.substring(9).equals("RF"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (Scoring.CubeNumbers.PLAYED, Scoring.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                    (Scoring.CubeNumbers.Force_PLAYED);
                 }
                 //For Red boost
                 if(dataStr.substring(6).equals("RB1"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().redVaultBoost
+                      (Scoring.CubeNumbers.Boost_1);
                 }
                 if (dataStr.substring(7).equals("RB2"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().redVaultBoost
+        (Scoring.CubeNumbers.Boost_2);
                 }
                 if (dataStr.substring(8).equals("RB3"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Boost);          
+                    FieldAndRobots.getInstance().redVaultBoost
+        (Scoring.CubeNumbers.Boost_3);          
                 }
                 if(dataStr.substring(10).equals("RB"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().redVaultBoost
+        (Scoring.CubeNumbers.Boost_PLAYED);
                 }
                 //Red Levitiate
                 if(dataStr.substring(3).equals("RLEV1"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Levitate_1);
                 }
                 if(dataStr.substring(4).equals("RLEV2"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Levitate_2);
                 }
                 if(dataStr.substring(5).equals("RLEV3"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Levitate_3);
                 }
                 if(dataStr.substring(11).equals("RLEV"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Lev_PLAYED);
                 }
                 
-                //Blue Force
+              /*  //Blue Force
                 if(dataStr.substring(0).equals("BF1"))
                 {
                     FieldAndRobots.getInstance().blueVault
