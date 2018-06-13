@@ -236,21 +236,13 @@ public class GovernThread extends Thread {
         matchMode = WARMUP_MODE;
         playSound("MATCH_WARMUP.wav");//Play WarmUp sound
         UI_Layer.getInstance().changeProBarColor(WARM_UP);
-        //Sets the Red Vault powerups to zero cubes
-        FieldAndRobots.getInstance().redVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Force);
-        FieldAndRobots.getInstance().redVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Boost);
-        FieldAndRobots.getInstance().redVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Levitate);
-        //Sets the Blue vault power ups to zero cubes
-        FieldAndRobots.getInstance().blueVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Force);
-        FieldAndRobots.getInstance().blueVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Boost);
-        FieldAndRobots.getInstance().blueVault(FieldAndRobots.CubeNumbers.Cube_Zero, FieldAndRobots.PowerUps.Levitate);
-      while (!kill)
+         while (!kill)
       {
           int newMatchTimeMillis = pseudoTimeMillis;
           if(!isWarmUp())
           {
               newMatchTimeMillis -= getWarmUpTimeMillis();
-              
+       
    
      }
           currMatchTimeMillis = (int) getModeTimeMillis() - newMatchTimeMillis;

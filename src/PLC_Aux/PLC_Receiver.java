@@ -11,6 +11,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import Game.RandomString;
+
+import OFMS.FieldAndRobots.CubeNumbers;
+import Game.Scoring;
+
+import static OFMS.Main.gameData;
+import java.util.List;
 
 /**
  * Receives packet information(such as ESTOP status) from the PLC.
@@ -24,6 +31,7 @@ import java.net.SocketException;
  */
 public class PLC_Receiver extends Thread {
 
+   
     /**
      * Holds the socket used for communication.
      */
@@ -43,7 +51,7 @@ public class PLC_Receiver extends Thread {
     /**
      * The string data received from the PLC.
      */
-    private String dataStr;
+    public String dataStr;
     /**
      * Holds the value for if the field, as a whole, has been ESTOPPED.
      */
@@ -76,6 +84,7 @@ public class PLC_Receiver extends Thread {
     public static void resetFieldESTOPPED() {
         field_ESTOPPED = false;
     }
+    
 
     /**
      * Method called when you call "Thread.start();" - Receives packets from the
@@ -206,71 +215,186 @@ public class PLC_Receiver extends Thread {
                     }
                     // }
                 }
+                
+                //Scale and Switch plc stuff
+                //If the plc get the game data is equal to LLL
+                if(dataStr.substring(0).equals("LLL"))
+                {
+                    if(dataStr.substring(0).equals("SS1"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                }
+                //if the game data is RRR
+                if(dataStr.substring(0).equals("RRR"))
+                {
+                     if(dataStr.substring(0).equals("SS1"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                }
+                //if the game data is LRL
+                if(gameData.equals("LRL"))
+                {
+                     if(dataStr.substring(0).equals("SS1"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                }
+                if(dataStr.substring(0).equals("RLR"))
+                {
+                     if(dataStr.substring(0).equals("SS1"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(1).equals("SS2"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(2).equals("RSS1"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                    if(dataStr.substring(3).equals("RSS2"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(4).equals("BSS1"))
+                    {
+                        FieldAndRobots.getInstance().BlueOwnership();
+                    }
+                    if(dataStr.substring(5).equals("BSS2"))
+                    {
+                        FieldAndRobots.getInstance().RedOwnership();
+                    }
+                }
+               
+                //Power ups
                 //If the Red Force becomes active
                 if(dataStr.substring(0).equals("RF1"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                     (Scoring.CubeNumbers.Force_1);
                 }
                 if (dataStr.substring(1).equals("RF2"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                       (Scoring.CubeNumbers.Force_2);
                 }
                 if(dataStr.substring(2).equals("RF3"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                    (Scoring.CubeNumbers.Force_3);
                 }
                 if(dataStr.substring(9).equals("RF"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().redVaultForce
+                    (Scoring.CubeNumbers.Force_PLAYED);
                 }
                 //For Red boost
                 if(dataStr.substring(6).equals("RB1"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().redVaultBoost
+                      (Scoring.CubeNumbers.Boost_1);
                 }
                 if (dataStr.substring(7).equals("RB2"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().redVaultBoost
+        (Scoring.CubeNumbers.Boost_2);
                 }
                 if (dataStr.substring(8).equals("RB3"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Boost);          
+                    FieldAndRobots.getInstance().redVaultBoost
+        (Scoring.CubeNumbers.Boost_3);          
                 }
                 if(dataStr.substring(10).equals("RB"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().redVaultBoost
+        (Scoring.CubeNumbers.Boost_PLAYED);
                 }
                 //Red Levitiate
                 if(dataStr.substring(3).equals("RLEV1"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Levitate_1);
                 }
                 if(dataStr.substring(4).equals("RLEV2"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Levitate_2);
                 }
                 if(dataStr.substring(5).equals("RLEV3"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Levitate_3);
                 }
                 if(dataStr.substring(11).equals("RLEV"))
                 {
-                    FieldAndRobots.getInstance().redVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().redVaultLev
+        (Scoring.CubeNumbers.Lev_PLAYED);
                 }
                 
-                //Blue Force
+              /*  //Blue Force
                 if(dataStr.substring(0).equals("BF1"))
                 {
                     FieldAndRobots.getInstance().blueVault
@@ -333,9 +457,15 @@ public class PLC_Receiver extends Thread {
                     FieldAndRobots.getInstance().blueVault
         (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
                 }
-                //add the stuff for the scale and switch scoring
-                //add lights for vaults
+                //Red Switch Scoring
+                if(dataStr.substring(0).equals("RLS1"))
+                {
                     
+                }
+               
+
+
+               
                /*
                * Third Byte = System Status Code(blue then red)
                */

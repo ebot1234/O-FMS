@@ -3,6 +3,7 @@ import Game.Seesaw;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import Game.Scoring;
 
 /**
  * This class represents an FRC playing field and all the teams (robots) upon
@@ -60,9 +61,14 @@ public class FieldAndRobots {
      */
     private static FieldAndRobots _instance;
     //Red Vault Score
-    private int RedVaultScore;
+    int RedVaultScore = 0;
     //Blue Vault Score
-    private int BlueVaultScore;
+    int BlueVaultScore = 0;
+    int RedScore = 0;
+    int BlueScore = 0;
+    int RedOwnershipScore = 0;
+    int BlueOwnershipScore = 0;
+    
     
     Random random = new Random();
     
@@ -318,7 +324,7 @@ public class FieldAndRobots {
         }
         return allReady;
     }
-
+    
    
 
     /**
@@ -332,22 +338,39 @@ public class FieldAndRobots {
     
     public enum CubeNumbers
     {
-        Cube_1, Cube_2, Cube_3, PLAYED, Cube_Zero;
+        Cube_1, Cube_2, Cube_3, PLAYED, Cube_Zero, Force_PLAYED, Boost_PLAYED, Lev_PLAYED;
     }
     
     public enum PowerUps
     {
-        Force, Levitate, Boost;
+        Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3, PLAYED;
     }
-    public void Boost()
-    {
-         long Boost = System.currentTimeMillis() + 10000; // Current time + 10 seconds
+  
+     public void RedOwnership(){
+    long Ownership = System.currentTimeMillis() + 1000; // Current time + 1 second
 
         while(true){
-            if(Boost <= System.currentTimeMillis()){
+            if(Ownership <= System.currentTimeMillis()){
                 
-                int score = RedVaultScore*2;
-                Boost += 10000;
+                
+                RedOwnershipScore++;
+                Ownership += 1000;
+            }
+                try{ 
+                Thread.sleep(5);
+            }catch(Exception ex){
+                
+                System.err.println( ex.getMessage() );
+            }
+        }}
+    public void BlueOwnership(){
+    long Ownership = System.currentTimeMillis() + 1000; // Current time + 1 second
+
+        while(true){
+            if(Ownership <= System.currentTimeMillis()){
+                
+                BlueOwnershipScore++;
+                Ownership += 1000;
             }
                 try{ 
                 Thread.sleep(5);
@@ -356,75 +379,138 @@ public class FieldAndRobots {
                 System.err.println( ex.getMessage() );
             }
         }
-     }
-     public void redVault(FieldAndRobots.CubeNumbers numbers,FieldAndRobots.PowerUps powerups )
-    {
-        //the score for each cubes in the vault
-        if ( numbers == FieldAndRobots.CubeNumbers.Cube_1)
-        {
-            int score = RedVaultScore+9;
-        }
-        if(numbers == FieldAndRobots.CubeNumbers.Cube_2)
-        {
-            int score = RedVaultScore+9;
-        }
-        if (numbers == FieldAndRobots.CubeNumbers.Cube_3)
-        {
-            int score = RedVaultScore+9;
-        }
-        if (numbers == FieldAndRobots.CubeNumbers.PLAYED)
-        {
-            int score = RedVaultScore+0;
-        }
-        if (powerups == FieldAndRobots.PowerUps.Force)
-        {
-            //add the powerup of force
-        }
-        if (powerups == FieldAndRobots.PowerUps.Levitate)
-        {
-            int score = RedVaultScore+30;
-        }
-        if (powerups == FieldAndRobots.PowerUps.Boost)
-        {
-             Boost();
-        }
     }
-    
-    
-    
-    public void blueVault(FieldAndRobots.CubeNumbers numbers, FieldAndRobots.PowerUps powerups)
+ 
+     public void RedBoost()
     {
-        //Add the cube numbers for the Blue Vault
-         if ( numbers == FieldAndRobots.CubeNumbers.Cube_1)
-        {
-            int score = BlueVaultScore+9;
+         long Boost = System.currentTimeMillis() + 10000; // Current time + 10 seconds
+
+        while(true){
+            if(Boost <= System.currentTimeMillis()){
+                
+                 RedScore = RedVaultScore*2;
+                Boost += 10000;
+            }
+                try{ 
+                Thread.sleep(5); //Does this command for 10 seconds
+            }catch(Exception ex){
+                
+                System.err.println( ex.getMessage() );
+            }
         }
-        if(numbers == FieldAndRobots.CubeNumbers.Cube_2)
-        {
-            int score = BlueVaultScore+9;
+     }
+     public void BlueBoost()
+    {
+         long Boost = System.currentTimeMillis() + 10000; // Current time + 10 seconds
+
+        while(true){
+            if(Boost <= System.currentTimeMillis()){
+                
+                BlueScore = BlueVaultScore*2;
+                Boost += 10000;
+            }
+                try{ 
+                Thread.sleep(10);//Does this command for 10 seconds
+            }catch(Exception ex){
+                
+                System.err.println( ex.getMessage() );
+            }
         }
-        if (numbers == FieldAndRobots.CubeNumbers.Cube_3)
+     }
+     public void redVaultForce(Scoring.CubeNumbers numbers)
+    {
+        //Red force PowerUp
+       
+         if (Scoring.CubeNumbers.Force_1 == Scoring.CubeNumbers.Force_PLAYED)
         {
-            int score = BlueVaultScore+9;
+            RedScore = RedOwnershipScore*2;
         }
-        if (numbers == FieldAndRobots.CubeNumbers.PLAYED)
+        
+         if(Scoring.CubeNumbers.Force_2 == Scoring.CubeNumbers.Force_PLAYED)
+         {
+             RedScore = RedOwnershipScore*2;
+             
+         }
+        if(Scoring.CubeNumbers.Force_3 == Scoring.CubeNumbers.Force_PLAYED)
         {
-            int score = BlueVaultScore+0;
-        }
-        if (powerups == FieldAndRobots.PowerUps.Force)
-        {
-            //add the powerup of force
+            RedScore = RedOwnershipScore*2;
             
         }
-        if (powerups == FieldAndRobots.PowerUps.Levitate)
+        if(Scoring.CubeNumbers.Force_1 == Scoring.CubeNumbers.Cube_1)
         {
-            int score = BlueVaultScore+30;
+            RedScore = RedOwnershipScore+3;
         }
-        if (powerups == FieldAndRobots.PowerUps.Boost)
+         if(Scoring.CubeNumbers.Force_2 == Scoring.CubeNumbers.Cube_2)
         {
-             int score = BlueVaultScore+120;
+            RedScore = RedOwnershipScore+3;
+        }
+          if(Scoring.CubeNumbers.Force_3 == Scoring.CubeNumbers.Cube_3)
+        {
+            RedScore = RedOwnershipScore+3;
         }
     }
+        public void redVaultBoost(Scoring.CubeNumbers numbers)
+        {
+            if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Boost_PLAYED)
+            {
+                RedBoost();
+            }
+            if(Scoring.CubeNumbers.Boost_2 == Scoring.CubeNumbers.Boost_PLAYED)
+            {
+                RedBoost();
+            }
+            if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Boost_PLAYED)
+            {
+                RedBoost();
+            }
+             if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Cube_1)
+             {
+                     RedScore = RedOwnershipScore+3;
+             }
+             if(Scoring.CubeNumbers.Boost_2 == Scoring.CubeNumbers.Cube_2)
+             {
+                    RedScore = RedOwnershipScore+3;
+             }
+             if(Scoring.CubeNumbers.Boost_3 == Scoring.CubeNumbers.Cube_3)
+             {
+                 RedScore = RedOwnershipScore+3;
+             }
+        }
+        public void redVaultLev(Scoring.CubeNumbers numbers)
+        {
+            if(Scoring.CubeNumbers.Levitate_1 == Scoring.CubeNumbers.Lev_PLAYED)
+            {
+            
+            }
+            if(Scoring.CubeNumbers.Levitate_2 == Scoring.CubeNumbers.Lev_PLAYED)
+            {
+            
+            }
+            if(Scoring.CubeNumbers.Levitate_3 == Scoring.CubeNumbers.Levitate_3)
+            {
+                
+            }
+            if(Scoring.CubeNumbers.Levitate_1 == Scoring.CubeNumbers.Cube_1)
+            {
+                RedScore = RedVaultScore+3;
+            }
+            if(Scoring.CubeNumbers.Levitate_2 == Scoring.CubeNumbers.Cube_2)
+            {
+                    RedScore = RedVaultScore+3;
+            }
+            if(Scoring.CubeNumbers.Levitate_3 == Scoring.CubeNumbers.Cube_3)
+            {
+                RedScore = RedVaultScore+3;
+            }
+        }
+
+     
+            
+    
+   
+        
+    
+    
        
         
     
