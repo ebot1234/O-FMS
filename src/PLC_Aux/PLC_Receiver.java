@@ -274,7 +274,7 @@ public class PLC_Receiver extends Thread {
                     }
                 }
                 //if the game data is LRL
-                if(dataStr.substring(0).equals("LRL"))
+                if(gameData.equals("LRL"))
                 {
                      if(dataStr.substring(0).equals("SS1"))
                     {
