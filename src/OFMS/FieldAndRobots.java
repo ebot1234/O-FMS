@@ -417,6 +417,35 @@ public class FieldAndRobots {
             }
         }
      }
+     
+     public void redFoul(Scoring.Fouls fouls)
+     {
+         if(Scoring.Fouls.Red_Foul == Scoring.Fouls.Red_Foul)
+         {
+             BlueScore= BlueScore+5;
+         }
+     }
+     public void blueFoul(Scoring.Fouls fouls)
+     {
+         if(Scoring.Fouls.Blue_Foul == Scoring.Fouls.Blue_Foul)
+         {
+             RedScore = RedScore +5;
+         }
+     }
+     public void redTech(Scoring.Fouls fouls)
+     {
+         if(Scoring.Fouls.Red_Tech == Scoring.Fouls.Red_Tech)
+         {
+             BlueScore= BlueScore+25;
+         }
+     }
+     public void blueTech(Scoring.Fouls fouls)
+     {
+         if(Scoring.Fouls.Blue_Tech == Scoring.Fouls.Blue_Tech)
+         {
+             RedScore = RedScore+25;
+         }
+     }
      public void redVaultForce(Scoring.CubeNumbers numbers)
     {
         //Red force PowerUp
@@ -503,8 +532,93 @@ public class FieldAndRobots {
                 RedScore = RedVaultScore+3;
             }
         }
+        public void blueVaultForce(Scoring.CubeNumbers numbers)
+    {
+        //Red force PowerUp
+       
+         if (Scoring.CubeNumbers.Force_1 == Scoring.CubeNumbers.Force_PLAYED)
+        {
+            BlueScore = BlueOwnershipScore*2;
+        }
+        
+         if(Scoring.CubeNumbers.Force_2 == Scoring.CubeNumbers.Force_PLAYED)
+         {
+             BlueScore = BlueOwnershipScore*2;
+             
+         }
+        if(Scoring.CubeNumbers.Force_3 == Scoring.CubeNumbers.Force_PLAYED)
+        {
+            BlueScore = BlueOwnershipScore*2;
+            
+        }
+        if(Scoring.CubeNumbers.Force_1 == Scoring.CubeNumbers.Cube_1)
+        {
+            BlueScore = BlueOwnershipScore+3;
+        }
+         if(Scoring.CubeNumbers.Force_2 == Scoring.CubeNumbers.Cube_2)
+        {
+            BlueScore = BlueOwnershipScore+3;
+        }
+          if(Scoring.CubeNumbers.Force_3 == Scoring.CubeNumbers.Cube_3)
+        {
+            BlueScore = BlueOwnershipScore+3;
+        }
+    }
+        public void blueVaultBoost(Scoring.CubeNumbers numbers)
+        {
+            if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Boost_PLAYED)
+            {
+                BlueBoost();
+            }
+            if(Scoring.CubeNumbers.Boost_2 == Scoring.CubeNumbers.Boost_PLAYED)
+            {
+                BlueBoost();
+            }
+            if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Boost_PLAYED)
+            {
+                BlueBoost();
+            }
+             if(Scoring.CubeNumbers.Boost_1 == Scoring.CubeNumbers.Cube_1)
+             {
+                     BlueScore = BlueOwnershipScore+3;
+             }
+             if(Scoring.CubeNumbers.Boost_2 == Scoring.CubeNumbers.Cube_2)
+             {
+                    BlueScore = BlueOwnershipScore+3;
+             }
+             if(Scoring.CubeNumbers.Boost_3 == Scoring.CubeNumbers.Cube_3)
+             {
+                 BlueScore = BlueOwnershipScore+3;
+             }
+        }
+        public void blueVaultLev(Scoring.CubeNumbers numbers)
+        {
+            if(Scoring.CubeNumbers.Levitate_1 == Scoring.CubeNumbers.Lev_PLAYED)
+            {
+            
+            }
+            if(Scoring.CubeNumbers.Levitate_2 == Scoring.CubeNumbers.Lev_PLAYED)
+            {
+            
+            }
+            if(Scoring.CubeNumbers.Levitate_3 == Scoring.CubeNumbers.Levitate_3)
+            {
+                
+            }
+            if(Scoring.CubeNumbers.Levitate_1 == Scoring.CubeNumbers.Cube_1)
+            {
+                RedScore = RedVaultScore+3;
+            }
+            if(Scoring.CubeNumbers.Levitate_2 == Scoring.CubeNumbers.Cube_2)
+            {
+                    RedScore = RedVaultScore+3;
+            }
+            if(Scoring.CubeNumbers.Levitate_3 == Scoring.CubeNumbers.Cube_3)
+            {
+                RedScore = RedVaultScore+3;
+            }
 
-     
+        }
             
     
    

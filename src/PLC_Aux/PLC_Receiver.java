@@ -394,79 +394,95 @@ public class PLC_Receiver extends Thread {
         (Scoring.CubeNumbers.Lev_PLAYED);
                 }
                 
-              /*  //Blue Force
+                //Fouls coming from the PLC/CMORE Ref Pads
+                //Blue Fouls
+                if(dataStr.substring(1).equals("B_F"))
+                {
+                   FieldAndRobots.getInstance().blueFoul(Scoring.Fouls.Blue_Foul);
+                }
+                //Red Foul
+                if(dataStr.substring(2).equals("R_F"))
+                {
+                    FieldAndRobots.getInstance().redFoul(Scoring.Fouls.Red_Foul);
+                }
+                //Blue Tech Foul
+                if(dataStr.substring(3).equals("B_Tech"))
+                {
+                    FieldAndRobots.getInstance().blueTech(Scoring.Fouls.Blue_Tech);
+                }
+                //Red Tech Foul
+                if(dataStr.substring(4).equals("R_Tech"))
+                {
+                    FieldAndRobots.getInstance().redTech(Scoring.Fouls.Red_Tech);
+                }
+                
+                //Blue Force
                 if(dataStr.substring(0).equals("BF1"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().blueVaultForce
+        (Scoring.CubeNumbers.Force_1);
                 }
                 if(dataStr.substring(1).equals("BF2"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().blueVaultForce
+        (Scoring.CubeNumbers.Force_2);
                 }
                 if(dataStr.substring(2).equals("BF3"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().blueVaultForce
+        (Scoring.CubeNumbers.Force_3);
                 }
+               
                 if(dataStr.substring(3).equals("BF"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Force);
+                    FieldAndRobots.getInstance().blueVaultForce
+        (Scoring.CubeNumbers.Force_PLAYED);
                 }
                 //Blue Boost
                 if(dataStr.substring(4).equals("BB1"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().blueVaultBoost
+        (Scoring.CubeNumbers.Boost_1);
                 }
                 if(dataStr.substring(5).equals("BB2"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().blueVaultBoost
+        (Scoring.CubeNumbers.Boost_2);
                 }
                 if(dataStr.substring(6).equals("BB3"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().blueVaultBoost
+        (Scoring.CubeNumbers.Boost_3);
                 }
                 if(dataStr.substring(7).equals("BB"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Boost);
+                    FieldAndRobots.getInstance().blueVaultBoost
+        (Scoring.CubeNumbers.Boost_PLAYED);
+        
                 }
                 //Blue Lev
                 if(dataStr.substring(8).equals("BLEV1"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_1, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().blueVaultLev
+        (Scoring.CubeNumbers.Levitate_1);
+        
                 }
                 if(dataStr.substring(9).equals("BLEV2"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_2, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().blueVaultLev
+        (Scoring.CubeNumbers.Levitate_2);
                 }
                 if(dataStr.substring(10).equals("BLEV3"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.Cube_3, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().blueVaultLev
+        (Scoring.CubeNumbers.Levitate_3);
                 }
                 if(dataStr.substring(11).equals("BLEV"))
                 {
-                    FieldAndRobots.getInstance().blueVault
-        (FieldAndRobots.CubeNumbers.PLAYED, FieldAndRobots.PowerUps.Levitate);
+                    FieldAndRobots.getInstance().blueVaultLev
+        (Scoring.CubeNumbers.Lev_PLAYED);
                 }
-                //Red Switch Scoring
-                if(dataStr.substring(0).equals("RLS1"))
-                {
-                    
-                }
-               
-
-
-               
-               /*
+              /*
                * Third Byte = System Status Code(blue then red)
                */
             if (isBitSet(data[2], 0)) {

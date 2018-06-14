@@ -11,6 +11,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 
 /**
@@ -22,6 +23,8 @@ public class Controller {
     private final String Led_IP = "10.0.0.20";
     
     private InetAddress LedAddr;
+    private final static int DMX_DATA_POSITION = 126; 
+ 
     
     private DatagramSocket Led;
     private DatagramPacket len;
@@ -37,7 +40,8 @@ public class Controller {
    Strip farStrip = new Strip();
    public static RandomString gameData;
    
-  private static final byte componentId = "O!FMS".getBytes()[0];
+ 
+    private int[] pointIndices;
    
 
     private  void LED(){
@@ -122,78 +126,103 @@ public class Controller {
             Controller.sendPacket(farStripUniverse);
         }
     }
-    public void createBlankPacket()
+    public Controller pointIndices(){return null;
+}
+    
+    
+  
+    public void createBlankPacket(int universeNumber, int[] pointIndices)
+            
     {
+         super.equals(DMX_DATA_POSITION + pointIndices.length * 3); 
+         this.pointIndices = pointIndices; 
         byte[] data = new byte[126+3*numPixels];
        
-        //ROOT LAYER
-        data[0]=0x00;   // Preamble Size (high)
-        data[1]=0x10;   // Preamble Size (low)
-        data[2]=0x00;   // Post-amble Size (high)
-        data[3]=0x00;   // Post-amble Size (low)
-        data[4]=0x41;   // ACN Packet Identifier, Identifies this packet as E1.17 (12 bytes)
-        data[5]=0x53;
-        data[6]=0x43;
-        data[7]=0x2d;
-        data[8]=0x45;
-        data[9]=0x31;
-        data[10]=0x2e;
-        data[11]=0x31;
-        data[12]=0x37;
-        data[13]=0x00;
-        data[14]=0x00;
-        data[15]=0x00;
-        data[16]=0x72;  // Protocol flags and length, Low 12 bits = PDU length, High 4 bits = 0x7 (high)
-        data[17]=0x6e;  // Protocol flags and length (low), 0x26e = 638 - 16
-        data[18]=0x00;  // Vector, Identifies RLP Data as 1.31 Protocol PDU, (4 bytes)
-        data[19]=0x00;
-        data[20]=0x00;
-        data[21]=0x04;
-        for (int i = 0; i < 21; i++) {
-            data[i] = componentId;
-        }
-       
-        //E1.31 FRAMING LAYER
-        data[38]=0x72;  // Framing Protocol flags and length (high)
-        data[39]=0x58;  // 0x258 = 638 - 38
-        data[40]=0x00;  // Framing Vector (indicates that the E1.31 framing layer is wrapping a DMP PDU)
-        data[41]=0x00;
-        data[42]=0x00;
-        data[43]=0x02;
-       for(int i = 0; i <43; i++){
-           data[i] = componentId;
-       }
- 
-
-        data[108]=100;                          // Priority, Data priority if multiple sources 0-200
-        data[109]=0x00;                         // Reserved, Transmitter Shall Send 0 (high)
-        data[110]=0x00;                         // Reserved, Transmitter Shall Send 0 (low)
-        data[111]=0x00;                         // Sequence Number, To detect duplicate or out of order packets. 
-        data[112]=0x00;                         // Options Flags, Bit 7 = Preview_Data, Bit 6 = Stream_Terminated
-//        data[113]=(byte)(universeNr >> 8);      // Universe Number (high)
-//        data[114]=(byte)(universeNr & 255);     // Universe Number (low)
-
-        //DMP LAYER
-        data[115]=0x72;                         // Protocol flags and length, Low 12 bits = PDU length, High 4 bits = 0x7 (high)
-        data[116]=0x0b;                         // Protocol flags and length (low) 0x20b = 638 - 115
-        data[117]=0x02;                         // DMP Vector (Identifies DMP Set Property Message PDU)
-        data[118]=(byte)0xa1;                   // DMP Address Type & Data Type
-        data[119]=0x00;                         // First Property Address (high), Indicates DMX START Code is at DMP address 0
-        data[120]=0x00;                         // First Property Address (low)
-        data[121]=0x00;                         // Address Increment (high)
-        data[122]=0x01;                         // Address Increment (low)
-        data[123]=0x02;                         // Property value count (high)
-        data[124]=0x01;                         // Property value count (low)
-        data[125]=0x00;                         // DMX512-A START Code
-//512 DMX DATA
-        
-     
-      
-   
-   
-           
-       
-         
-    }
+        int flagLength;
     
+    // Preamble size
+    data[0] = (byte) 0x00;
+    data[1] = (byte) 0x10;
+    // Post-amble size
+    data[0] = (byte) 0x00;
+    data[1] = (byte) 0x10;
+    // ACN Packet Identifier
+    data[4] = (byte) 0x41;
+    data[5] = (byte) 0x53;
+    data[6] = (byte) 0x43;
+    data[7] = (byte) 0x2d;
+    data[8] = (byte) 0x45;
+    data[9] = (byte) 0x31;
+    data[10] = (byte) 0x2e;
+    data[11] = (byte) 0x31;
+    data[12] = (byte) 0x37;
+    data[13] = (byte) 0x00;
+    data[14] = (byte) 0x00;
+    data[15] = (byte) 0x00;
+    // Flags and length
+    flagLength = 0x00007000 | ((data.length - 16) & 0x0fffffff);
+    data[16] = (byte) ((flagLength >> 8) & 0xff);
+    data[17] = (byte) (flagLength & 0xff);
+    // RLP 1.31 Protocol PDU Identifier
+    data[18] = (byte) 0x00;
+    data[19] = (byte) 0x00;
+    data[20] = (byte) 0x00;
+    data[21] = (byte) 0x04;
+    // Sender's CID
+    for (int i = 22; i < 38; ++i) {
+        data[i] = (byte) i;
+    }
+    // Flags and length
+    flagLength = 0x00007000 | ((data.length - 38) & 0x0fffffff);
+    data[38] = (byte) ((flagLength >> 8) & 0xff);
+    data[39] = (byte) (flagLength & 0xff);
+    // DMP Protocol PDU Identifier
+    data[40] = (byte) 0x00;
+    data[41] = (byte) 0x00;
+    data[42] = (byte) 0x00;
+    data[43] = (byte) 0x02;
+    // Source name
+    data[44] = 'O';
+    data[45] = '!'; 
+    data[46] = 'F';
+    data[47] = 'M';
+    data[48] = 'S';
+    for (int i = 48; i < 108; ++i) {
+        data[i] = 0;
+    }
+    // Priority
+    data[108] = 100;
+    // Reserved
+    data[109] = 0x00;
+    data[110] = 0x00;
+    // Sequence Number
+    data[111] = 0x00;
+    // Options
+    data[112] = 0x00;
+    // Universe number
+    // 113-114 are done in setUniverseNumber()
+    
+    // Flags and length
+    flagLength = 0x00007000 | ((data.length - 115) & 0x0fffffff);
+    data[115] = (byte) ((flagLength >> 8) & 0xff);
+    data[116] = (byte) (flagLength & 0xff);
+    // DMP Set Property Message PDU
+    data[116] = (byte) 0x02;
+    // Address Type & Data Type
+    data[117] = (byte) 0xa1;
+    // First Property Address
+    data[119] = 0x00;
+    data[120] = 0x00;
+    // Address Increment
+    data[121] = 0x00;
+    data[122] = 0x01;
+    // Property value count
+    int numProperties = 1 + this.pointIndices.length * 3;
+    data[123] = (byte) ((numProperties >> 8) & 0xff);
+    data[124] = (byte) (numProperties & 0xff);
+    // DMX Start 
+    data[125] = 0x00;
+    
+  }  
+
 }

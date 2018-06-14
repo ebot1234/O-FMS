@@ -5,30 +5,33 @@
  */
 package Game.Led;
 
+import java.awt.Color;
+
 
 /**
  *
  * @author Ethen
+ * DMX Color Values
  */
 public class Colors {
-    
-   String Color;
-   String red = Color;
-   String orange = Color;
-String	yellow = Color;
-String	green = Color;
-String	teal = Color;
-String	blue = Color;
-String	purple = Color;
-String	black = Color;
-String	purpleRed = Color;
-String	purpleBlue =Color;
-String	dimRed =Color;
-String	dimBlue =Color;
+public static final Color red = new Color(255, 0, 0);
+public static final Color orange = new Color(255, 50, 0);
+public static final Color yellow = new Color(255,255,0);
+public static final Color green = new Color(0,255, 0);
+public static final Color teal = new Color(0, 100, 100);
+public static final Color blue = new Color(0, 0, 255);
+public static final Color purple = new Color(100,0,100);
+public static final Color white = new Color(255, 255, 255);
+public static final Color black = new Color(0,0,0);
+public static final Color purpleRed = new Color(200, 0, 50);
+public static final Color purpleBlue = new Color(50, 0, 200);
+public static final Color dimRed = new Color(100,0,0);
+public static final Color dimBlue = new Color(0, 0, 100);
+   
 
-public void color(byte color[])
+public void getColors()
 {
-    red = "255,0,0";
-    orange = ""
+   
 }
+
 }

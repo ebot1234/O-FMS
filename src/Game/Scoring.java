@@ -89,6 +89,11 @@ public class Scoring {
     {
         Force_1, Levitate_2, Boost_2, Force_PLAYED, Boost_PLAYED, Lev_PLAYED, Force_2, Force_3, Levitate_1, Levitate_3, Boost_1, Boost_3, PLAYED;
     }
+    
+    public enum Fouls
+    {
+        Red_Foul, Blue_Foul, Red_Tech, Blue_Tech, Issued;
+    }
     public void RedBoost()
     {
          long Boost = System.currentTimeMillis() + 10000; // Current time + 10 seconds
@@ -228,4 +233,26 @@ public class Scoring {
         }
     }
     
+    public void RedFoul(Scoring.Fouls fouls)
+    {
+        //Adds 5 points to the Blue teams
+            BlueScore = BlueScore+5;
+        
+    } 
+    public void RedTechFoul()
+    {
+            //Adds 25 points to the Blue teams
+            BlueScore = BlueScore + 25;
+        
+    }
+    
+    public void BlueFoul()
+    {
+         RedScore = RedScore+5;
+    }
+    
+    public void BlueTechFoul()
+    {
+        RedScore = RedScore + 25;
+    }
 }

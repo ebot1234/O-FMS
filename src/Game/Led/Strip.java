@@ -6,10 +6,15 @@
 package Game.Led;
 
 import java.awt.Color;
-import static java.awt.Color.blue;
-import static java.awt.Color.green;
-import static java.awt.Color.red;
-import static java.awt.Color.white;
+import Game.Led.Colors;
+import static Game.Led.Colors.blue;
+import static Game.Led.Colors.green;
+import static Game.Led.Colors.red;
+import static Game.Led.Colors.white;
+import Game.Led.Controller;
+import OFMS.FieldAndRobots;
+import java.util.List;
+import PLC_Aux.PLC_Receiver;
 
 /**
  *
@@ -18,10 +23,18 @@ import static java.awt.Color.white;
 public class Strip {
     
     Modes mode = new Modes();
-     int numPixels = 150;
+     byte[] pixels;
     boolean isRed;
     String strip;
-    int oldPixels = 150;
+    byte[] oldPixels;
+    int numPixels = 150;
+   // private static final byte pixels = "pixels".getBytes()[0];
+   // private static final byte oldpixels = "oldPixels".getBytes()[0];
+
+    public Strip() {
+        this.pixels = new byte[numPixels*3];
+        this.oldPixels = new byte[numPixels*3];
+    }
     
    
     
@@ -70,6 +83,21 @@ public class Strip {
 	}
       
     }
+    public boolean shouldSendPacket(byte pixelData[])
+    {
+        for(int i=0;i<numPixels;i++)
+        {
+            byte[] pixel = new byte[9];
+        if(pixel[i] == oldPixels)
+        {
+            return(true);
+        }
+        
+        }
+        return false;
+        
+    }
+     
     public void populatePacketPixels(byte pixelData[])
     {
        for (int i = 0; i < 9; i++) {
@@ -80,10 +108,12 @@ public class Strip {
             pixel[2] = pixelData[3*i+2];
         }
     }
-   public void getColor(Color){
-	if (strip.isRed) {
-		 return red;
-	}
+   public boolean getColor(Colors){
+	if (PLC_Aux.PLC_Recevier.dataStr.substring(1).equals("LLL")) 
+        {
+        } else {
+            
+        }
 	return blue;
 }
    public void getOppositeColor(Color) {
